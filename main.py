@@ -17,20 +17,20 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    o = OperatorClass()
+    o = OrderClass()
     match message.text:
         case 'all':
-            d = o.get_operators()
+            d = o.get_orders()
             await message.answer(d)
         case 'one':
-            d = o.one_operator(1)
+            d = o.one_order(1)
             await message.answer(d)
         case 'store':
-            print(o.store_operator('ivan', 128412))
+            print(o.store_order('ivan', 128412, True, True))
         case 'update':
-            print(o.update_operator(1,'VASYYL', 2423))
+            print(o.update_order(id=1, reply_message="You are cool"))
         case 'delete':
-            o.delete_operators(1)
+            o.delete_order(1)
     await message.answer(message.text)
 
 

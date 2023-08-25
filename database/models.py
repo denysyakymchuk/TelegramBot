@@ -1,6 +1,6 @@
 import json
 
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, Text
 
 from database.database import Base, engine
 
@@ -11,15 +11,17 @@ class Order(Base):
     id = Column(Integer, primary_key=True)
     name_client = Column(String(255))
     telegram_id = Column(String(50))
-    is_accept_op = Column(Boolean)
-    is_accept_client = Column(Boolean)
+    is_accept_op = Column(Boolean, default=False)
+    is_accept_client = Column(Boolean, default=False)
+    reply_message = Column(Text, default=None)
 
     def __repr__(self):
         data = {"id": self.id,
                 "name_client": self.name_client,
                 "telegram_id": self.telegram_id,
                 "is_accept_op": self.is_accept_op,
-                "is_accept_client": self.is_accept_client}
+                "is_accept_client": self.is_accept_client,
+                "reply_message": self.reply_message}
         return json.dumps(data)
 
     def __str__(self):

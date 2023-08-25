@@ -19,10 +19,13 @@ class OperatorClass:
         session.commit()
         return data
 
-    def update_operator(self, id, name_operator, id_telegram_op):
+    def update_operator(self, id, name_operator=None, id_telegram_op=None):
         data = session.query(Operator).filter_by(id=id).first()
-        data.name_operator = name_operator
-        data.id_telegram_op = id_telegram_op
+        if name_operator is not None:
+            data.name_operator = name_operator
+        if id_telegram_op is not None:
+            data.id_telegram_op = id_telegram_op
+
         session.commit()
         return data
 
