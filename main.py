@@ -4,6 +4,7 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 
 import state
+from keyboard import default_cities
 from state import register_handlers, StateOrder
 from config import dp
 
@@ -12,7 +13,7 @@ register_handlers(dp)
 
 @dp.message_handler(commands=['start'],  state=None)
 async def send_welcome(message: types.Message):
-    await message.reply("Привет! Напишите сейчас с какого города хотите переслать:")
+    await message.reply("Привет! Напишите сейчас c какого города хотите переслать:", reply_markup=default_cities)
     await StateOrder.city_from.set()
 
 

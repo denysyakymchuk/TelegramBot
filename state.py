@@ -3,7 +3,9 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.types import ParseMode
 
-from config import dp, bot
+import check_text
+from config import dp, bot, w_another, w_cancel, w_another_ag
+from keyboard import another_rm, main_but, start_key, default_cities, h_curr_all, view_money, how_surr, how_curr_add, to_city, h_curr_a
 
 
 class StateOrder(StatesGroup):
@@ -17,53 +19,46 @@ class StateOrder(StatesGroup):
 
 @dp.message_handler(state=StateOrder.city_from)
 async def get_city_from(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        data['city_from'] = message.text
-
-    await bot.send_message(message.chat.id, "Отлично!\nТеперь в какой валюте:")
-    await StateOrder.curr_set.set()
+    await check_text.check_text(message, StateOrder.city_from, StateOrder.curr_set, h_curr_all, state, "Напишите город либо выберите из списка:", "Отлично!\nВведите в какой валютe:" , "city_from")
 
 
 @dp.message_handler(state=StateOrder.curr_set)
 async def get_curr_set(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        data['curr_set'] = message.text
-
-    await bot.send_message(message.chat.id, "Отлично!\nТеперь сумма:")
-    await StateOrder.total.set()
+    await check_text.check_text(message=message, current_state=StateOrder.curr_set, next_state=StateOrder.total, reply_mark=main_but, state=state, text_another='Напишите валюту либо выберите из списка', success_text="Отлично!\nВведи сумму:", key='curr_set', add=h_curr_a)
 
 
 @dp.message_handler(state=StateOrder.total)
 async def get_total(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        data['total'] = message.text
-
-    await bot.send_message(message.chat.id, "Отлично!\nСейчас город в какой нужно переслать:")
-    await StateOrder.city_to.set()
+    await check_text.check_text(message=message, current_state=StateOrder.total, next_state=StateOrder.city_to,
+                                reply_mark=to_city, state=state, text_another='Напишите сумму:',
+                                success_text="Отлично!\nНапишите в какой город:", key='total')
 
 
 @dp.message_handler(state=StateOrder.city_to)
 async def get_city_to(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        data['city_to'] = message.text
+    await check_text.check_text(message=message, current_state=StateOrder.city_to, next_state=StateOrder.curr_get,
+                                reply_mark=how_surr, state=state, text_another='Напишите город либо выберите из списка:',
+                                success_text="Отлично!\nНапишите в какой валюте получить:", key='city_to')
 
-    await bot.send_message(message.chat.id, "Отлично! Сейчас в какой валюте получить:")
-    await StateOrder.curr_get.set()
 
 
 @dp.message_handler(state=StateOrder.curr_get)
 async def get_curr_get(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        data['curr_get'] = message.text
-
-    await bot.send_message(message.chat.id, "Отлично! Сейчас в каком виде получить:")
-    await StateOrder.view_money.set()
+    await check_text.check_text(message=message, current_state=StateOrder.curr_get, next_state=StateOrder.view_money,
+                                reply_mark=view_money, state=state, text_another='Напишите город либо выберите из списка:',
+                                success_text="Отлично!\nНапишите в каком виде хотите получить:", key='curr_get', add=how_curr_add)
 
 
 @dp.message_handler(state=StateOrder.view_money)
 async def get_view_money(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        data['view_money'] = message.text
+    if message.text == str(w_another):
+        await bot.send_message(message.chat.id, f"Напишите в каком виде хотите получить")
+        await StateOrder.view_money.set()
+    elif message.text == str(w_cancel):
+        await state.finish()
+    else:
+        async with state.proxy() as data:
+            data['view_money'] = message.text
 
     async with state.proxy() as data:
         await bot.send_message(message.chat.id, f"Отлично!\n\n<i>Откуда:</i> {data['city_from']}\n"
@@ -71,7 +66,7 @@ async def get_view_money(message: types.Message, state: FSMContext):
                                                 f"<i>Сумма:</i> {data['total']}\n"
                                                 f"<i>В какой город:</i> {data['city_to']}\n"
                                                 f"<i>В какой валюте:</i> {data['curr_get']}\n"
-                                                f"<i>В каком виде:</i> {data['view_money']}\n", parse_mode=ParseMode.HTML)
+                                                f"<i>В каком виде:</i> {data['view_money']}\n",reply_markup=start_key, parse_mode=ParseMode.HTML)
 
     await state.finish()
 
