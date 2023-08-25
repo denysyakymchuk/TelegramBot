@@ -13,7 +13,7 @@ register_handlers(dp)
 
 @dp.message_handler(commands=['start'],  state=None)
 async def send_welcome(message: types.Message):
-    await message.reply("Привет! Напишите сейчас c какого города хотите переслать:", reply_markup=default_cities)
+    await message.reply("Привет! Город откуда хотите переслать:", reply_markup=default_cities)
     await StateOrder.city_from.set()
 
 

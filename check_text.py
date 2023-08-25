@@ -11,7 +11,7 @@ async def check_text(message, current_state, next_state, reply_mark, state, text
         await current_state.set()
     elif message.text == str(w_cancel):
         await state.finish()
-        await bot.send_message(message.chat.id, "Оменено!\nЧто бы начать заново /start", reply_markup=start_key)
+        await bot.send_message(message.chat.id, "Отменено!\nЧто бы начать заново /start", reply_markup=start_key)
     else:
         async with state.proxy() as data:
             data[f'{key}'] = message.text

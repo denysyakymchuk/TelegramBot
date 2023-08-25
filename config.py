@@ -5,7 +5,7 @@ w_cancel = 'Отмена'
 w_another = 'Другое'
 w_another_ag = 'Еще другое'
 
-API_TOKEN = '5258758589:AAGir_AD_CPWRSOEs4Jml7ORFOAbNiwwKA8'
+API_TOKEN = '6538540132:AAG_qOJEahsERU9376p9HOwLjVGEWrBPlVs'
 
 bot = Bot(token=API_TOKEN)
 
