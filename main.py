@@ -8,7 +8,7 @@ from database.crud.operator import OperatorClass
 from keyboard.keyboard import default_cities
 from state.operator_state import StateOperator
 from state.state import register_handlers, StateOrder
-from config import dp, bot, id_keys
+from config import dp, bot
 
 register_handlers(dp)
 
@@ -24,31 +24,35 @@ async def send_welcome(message: types.Message):
 async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContext):
     cart = callback_query.data.split(':')
 
-    if cart[0] == 'accept_id':
-        id_keys['id'] = cart[2]
-        print(cart[3])
+    match cart[0]:
+        case 'accept_id':
+            async with state.proxy() as data:
+                data['id_order'] = cart[3]
 
-        async with state.proxy() as data:
-            data['id_order'] = cart[3]
+            await StateOperator.get_rate.set()
+            database.crud.order.OrderClass().update_order(id=cart[3],
+                                                          telegram_id_operator=callback_query.message.chat.id)
+            database.crud.operator.OperatorClass().update_operator(id_telegram_op=callback_query.message.chat.id)
+            await callback_query.message.reply(
+                f"Вы приняли заказ!\n{serializator.ser(OrderClass().one_order(id=cart[3]))}"
+                f"\n\nСейчас напишите курс:")
 
-        await StateOperator.get_rate.set()
-        await callback_query.message.reply(f"Вы приняли заказ!\n{serializator.ser(OrderClass().one_order(id=cart[3]))}"
-                                           f"\n\nСейчас напишите курс:")
-    elif cart[0] == 'cancel_id':
-        await callback_query.message.reply(f"Вы отказали: Имя: {cart[1]}, id_telegram:{cart[2]}\nОн будет проинформирован")
-        await bot.send_message(cart[2], "Твой заказ отклонен!")
+        case 'cancel_id':
+            await callback_query.message.reply(f"Вы отказали: Имя: {cart[1]}, id_telegram:{cart[2]}\nОн будет проинформирован")
+            await bot.send_message(cart[2], "Твой заказ отклонен!")
 
-    elif cart[0] == 'client_accept_id':
-        await bot.send_message(cart[2], "Твой заказ принят! Жди сообщение с подскасками.")
-        await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Клиент {cart[3]} согласился.")
+        case 'client_accept_id':
+            await bot.send_message(cart[2], "Твой заказ принят! Жди сообщение с подскасками.")
+            await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Клиент {cart[3]} согласился.")
 
-    elif cart[0] == 'client_cancel_id':
-        await bot.send_message(cart[2], "Хорошо!")
-        await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Клиент {cart[3]} отказался.")
+        case 'client_cancel_id':
+            await bot.send_message(cart[2], "Хорошо!")
+            await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Клиент {cart[3]} отказался.")
 
-    else:
-        return KeyError
-    await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id)
+        case _:
+            return None
+
+    await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id) #delete sms with buttons
 
 
 #-------------------------------------------------------------------------#-------------------------------------------------------------------------

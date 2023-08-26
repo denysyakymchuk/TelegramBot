@@ -35,7 +35,7 @@ class OrderClass:
 
     def update_order(self, id, name_client=None, telegram_id=None,
                      is_accept_op=None, is_accept_client=None,
-                     reply_message=None):
+                     reply_message=None, telegram_id_operator=None):
         data = session.query(Order).filter_by(id=id).first()
         if name_client is not None:
             data.name_client = name_client
@@ -47,6 +47,8 @@ class OrderClass:
             data.is_accept_client = is_accept_client
         if reply_message is not None:
             data.reply_message = reply_message
+        if telegram_id_operator is not None:
+            data.telegram_id_operator = telegram_id_operator
 
         session.commit()
         return data

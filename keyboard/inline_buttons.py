@@ -30,7 +30,5 @@ def get_user_im_responce(user):
         text='Отказаться',
         callback_data=f'client_cancel_id:{user.id}:{user.telegram_id}:{user.name_client}'
     )
-    print(button_accept_client.callback_data)
-    print(button_cancel_client.callback_data)
     inline_kb_client = InlineKeyboardMarkup().add(button_accept_client, button_cancel_client)
     return inline_kb_client

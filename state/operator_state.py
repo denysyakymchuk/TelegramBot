@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
 import database.crud.operator
-from config import dp, bot, id_keys
+from config import dp, bot
 from database.crud.operator import OperatorClass
 from keyboard.inline_buttons import get_user_im_responce
 

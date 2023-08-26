@@ -17,6 +17,7 @@ class Order(Base):
     curr_get = Column(String(255))
     view_money = Column(String(255))
     telegram_id = Column(String(50))
+    telegram_id_operator = Column(String(50))
     is_accept_op = Column(Boolean, default=None)
     is_accept_client = Column(Boolean, default=None)
     reply_message = Column(Text, default=None)
@@ -40,6 +41,7 @@ class Order(Base):
         data = {"id": self.id,
                 "name_client": self.name_client,
                 "telegram_id": self.telegram_id,
+                "telegram_id_operator": self.telegram_id,
                 "is_accept_op": self.is_accept_op,
                 "is_accept_client": self.is_accept_client,
                 "reply_message": self.reply_message,
@@ -58,17 +60,14 @@ class Operator(Base):
     id = Column(Integer, primary_key=True)
     name_operator = Column(String(255))
     id_telegram_op = Column(String(50))
-    
+    is_free = Column(Boolean)
+
     def __repr__(self):
-        data = {"id": self.id,
-                "name_operator": self.name_operator,
-                "id_telegram_op": self.id_telegram_op}
+        data = {"id_telegram_op": self.id_telegram_op}
         return json.dumps(data)
     
     def __str__(self):
-        data = {"id": self.id,
-                "name_operator": self.name_operator,
-                "id_telegram_op": self.id_telegram_op}
+        data = {"id_telegram_op": self.id_telegram_op}
         return json.dumps(data)
 
 
