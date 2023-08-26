@@ -27,7 +27,13 @@ class Order(Base):
                 "telegram_id": self.telegram_id,
                 "is_accept_op": self.is_accept_op,
                 "is_accept_client": self.is_accept_client,
-                "reply_message": self.reply_message}
+                "reply_message": self.reply_message,
+                "city_from": self.city_from,
+                "curr_set": self.curr_set,
+                "total": self.total,
+                "city_to": self.city_to,
+                "curr_get": self.curr_get,
+                "view_money": self.view_money}
         return json.dumps(data)
 
     def __str__(self):
@@ -35,7 +41,14 @@ class Order(Base):
                 "name_client": self.name_client,
                 "telegram_id": self.telegram_id,
                 "is_accept_op": self.is_accept_op,
-                "is_accept_client": self.is_accept_client}
+                "is_accept_client": self.is_accept_client,
+                "reply_message": self.reply_message,
+                "city_from": self.city_from,
+                "curr_set": self.curr_set,
+                "total": self.total,
+                "city_to": self.city_to,
+                "curr_get": self.curr_get,
+                "view_money": self.view_money}
         return json.dumps(data)
 
 

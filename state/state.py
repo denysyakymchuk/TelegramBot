@@ -5,6 +5,7 @@ from aiogram.types import ParseMode
 
 import check_text
 import database.crud.order
+import serializator
 from config import dp, bot, w_another, w_cancel, w_another_ag
 from keyboard.inline_buttons import get_inline_keyboard
 from keyboard.keyboard import another_rm, main_but, start_key, default_cities, h_curr_all, view_money, how_surr, how_curr_add, to_city, h_curr_a, non_cash
@@ -79,7 +80,7 @@ async def get_view_money(message: types.Message, state: FSMContext):
                                                         f"<i>Сумма:</i> {data['total']}\n"
                                                         f"<i>В какой город:</i> {data['city_to']}\n"
                                                         f"<i>В какой валюте:</i> {data['curr_get']}\n"
-                                                        f"<i>В каком виде:</i> {data['view_money']}\n",
+                                                        f"<i>В каком виде:</i> {data['view_money']}\n\nЖдите ответ!",
                                     reply_markup=start_key, parse_mode=ParseMode.HTML)
             #save data client
             database.crud.order.OrderClass().store_order(telegram_id=message.chat.id,
@@ -98,9 +99,7 @@ async def get_view_money(message: types.Message, state: FSMContext):
                                                               curr_get=data['curr_get'],
                                                               view_money=data['view_money'])
 
-
-            from keyboard.inline_buttons import button_select_oper
-            await bot.send_message(chat_id=operator.id_telegram_op, text=user, reply_markup=get_inline_keyboard(user)) #send message to operator
+            await bot.send_message(chat_id=operator.id_telegram_op, text=serializator.ser(user), reply_markup=get_inline_keyboard(user)) #send message to operator
 
         finally:
             await state.finish()

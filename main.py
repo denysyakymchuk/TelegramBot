@@ -1,6 +1,8 @@
 from aiogram import executor, types
 from aiogram.dispatcher import FSMContext
 
+import database.crud.operator
+import serializator
 from database.crud.order import OrderClass
 from database.crud.operator import OperatorClass
 from keyboard.keyboard import default_cities
@@ -31,9 +33,20 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
             data['id_order'] = cart[3]
 
         await StateOperator.get_rate.set()
-        await callback_query.message.reply(f"Вы приняли заказ: Имя: {cart[1]}, id_telegram:{cart[2]}\nОн будет проинформирован")
+        await callback_query.message.reply(f"Вы приняли заказ!\n{serializator.ser(OrderClass().one_order(id=cart[3]))}"
+                                           f"\n\nСейчас напишите курс:")
     elif cart[0] == 'cancel_id':
         await callback_query.message.reply(f"Вы отказали: Имя: {cart[1]}, id_telegram:{cart[2]}\nОн будет проинформирован")
+        await bot.send_message(cart[2], "Твой заказ отклонен!")
+
+    elif cart[0] == 'client_accept_id':
+        await bot.send_message(cart[2], "Твой заказ принят! Жди сообщение с подскасками.")
+        await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Клиент {cart[3]} согласился.")
+
+    elif cart[0] == 'client_cancel_id':
+        await bot.send_message(cart[2], "Хорошо!")
+        await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Клиент {cart[3]} отказался.")
+
     else:
         return KeyError
     await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id)
