@@ -2,6 +2,7 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
+import database.crud.operator
 from config import dp, bot, id_keys
 from database.crud.operator import OperatorClass
 from keyboard.inline_buttons import get_user_im_responce
@@ -35,8 +36,8 @@ async def get_city_from(message: types.Message, state: FSMContext):
         from database.crud.order import OrderClass
 
         user_model = OrderClass().update_order(id=data['id_order'], is_accept_op=True, reply_message=str("Курс: " + data['get_rate'] + " | " + "Сроки: " + data["get_deadline"]))
+        await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Сообщение отправлено!")
         await bot.send_message(user_model.telegram_id, f"Твой заказ принят!\n {user_model.reply_message}", reply_markup=get_user_im_responce(user_model))
-        await bot.send_message(OperatorClass().one_operator(1), f"Клиент поинформован!\nКак только он согласиться дам знать!{user_model.reply_message}", reply_markup=get_user_im_responce(user_model))
 
     except Exception as ex:
         from write_logs import write_logs

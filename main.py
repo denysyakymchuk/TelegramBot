@@ -12,7 +12,6 @@ from config import dp, bot, id_keys
 
 register_handlers(dp)
 
-
 @dp.message_handler(commands=['start'],  state=None)
 async def send_welcome(message: types.Message):
     await message.reply("Привет! Город откуда хотите переслать:", reply_markup=default_cities)
