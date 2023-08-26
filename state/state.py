@@ -90,12 +90,18 @@ async def get_view_money(message: types.Message, state: FSMContext):
                                                          curr_get=data['curr_get'], view_money=data['view_money'])
 
             operator = database.crud.operator.OperatorClass().one_operator(1)
-            user = database.crud.order.OrderClass().one_order(telegram_id=message.chat.id)
+            user = database.crud.order.OrderClass().one_order(telegram_id=message.chat.id,
+                                                              city_from=data['city_from'],
+                                                              curr_set=data['curr_set'],
+                                                              total=data['total'],
+                                                              city_to=data['city_to'],
+                                                              curr_get=data['curr_get'],
+                                                              view_money=data['view_money'])
+
 
             from keyboard.inline_buttons import button_select_oper
-            await bot.send_message(chat_id=operator.id_telegram_op, text=user, reply_markup=get_inline_keyboard(user.telegram_id, user.name_client)) #send message to operator
-        except Exception as ex:
-            print(ex)
+            await bot.send_message(chat_id=operator.id_telegram_op, text=user, reply_markup=get_inline_keyboard(user)) #send message to operator
+
         finally:
             await state.finish()
 

@@ -17,8 +17,8 @@ class Order(Base):
     curr_get = Column(String(255))
     view_money = Column(String(255))
     telegram_id = Column(String(50))
-    is_accept_op = Column(Boolean, default=False)
-    is_accept_client = Column(Boolean, default=False)
+    is_accept_op = Column(Boolean, default=None)
+    is_accept_client = Column(Boolean, default=None)
     reply_message = Column(Text, default=None)
 
     def __repr__(self):

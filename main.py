@@ -1,12 +1,12 @@
 from aiogram import executor, types
-from aiogram.types import callback_query
+from aiogram.dispatcher import FSMContext
 
 from database.crud.order import OrderClass
 from database.crud.operator import OperatorClass
-from keyboard.inline_buttons import button_spam
 from keyboard.keyboard import default_cities
-from state import register_handlers, StateOrder
-from config import dp, bot
+from state.operator_state import StateOperator
+from state.state import register_handlers, StateOrder
+from config import dp, bot, id_keys
 
 register_handlers(dp)
 
@@ -20,15 +20,20 @@ async def send_welcome(message: types.Message):
 
 
 @dp.callback_query_handler()
-async def on_inline_button(callback_query: types.CallbackQuery):
+async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContext):
     cart = callback_query.data.split(':')
 
     if cart[0] == 'accept_id':
-        pass
-        await callback_query.message.reply(f"Вы приняли заказ: Имя: {cart[1]}, id:{cart[2]}\nОн будет проинформирован")
+        id_keys['id'] = cart[2]
+        print(cart[3])
+
+        async with state.proxy() as data:
+            data['id_order'] = cart[3]
+
+        await StateOperator.get_rate.set()
+        await callback_query.message.reply(f"Вы приняли заказ: Имя: {cart[1]}, id_telegram:{cart[2]}\nОн будет проинформирован")
     elif cart[0] == 'cancel_id':
-        pass
-        await callback_query.message.reply(f"Вы отказали: Имя: {cart[1]}, id:{cart[2]}\nОн будет проинформирован")
+        await callback_query.message.reply(f"Вы отказали: Имя: {cart[1]}, id_telegram:{cart[2]}\nОн будет проинформирован")
     else:
         return KeyError
     await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id)

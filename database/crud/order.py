@@ -9,11 +9,14 @@ class OrderClass:
     def get_orders(self):
         return session.query(Order).all()
 
-    def one_order(self, id=None, telegram_id=None):
+    def one_order(self, id=None, telegram_id=None, city_from=None, curr_set=None,
+                  total=None, city_to=None, curr_get=None, view_money=None):
         if telegram_id is None:
             return session.query(Order).filter_by(id=id).first()
         else:
-            return session.query(Order).filter_by(telegram_id=telegram_id).first()
+            return session.query(Order).filter_by(telegram_id=telegram_id,
+                                                  city_from=city_from, curr_set=curr_set, total=total,
+                                                  city_to=city_to, curr_get=curr_get, view_money=view_money).first()
 
     def store_order(self, name_client, telegram_id,
                     is_accept_op, is_accept_client,
