@@ -28,26 +28,38 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
         case 'accept_id':
             async with state.proxy() as data:
                 data['id_order'] = cart[3]
-
-            await StateOperator.get_rate.set()
-            database.crud.order.OrderClass().update_order(id=cart[3],
-                                                          telegram_id_operator=callback_query.message.chat.id)
-            database.crud.operator.OperatorClass().update_operator(id_telegram_op=callback_query.message.chat.id)
-            await callback_query.message.reply(
-                f"Вы приняли заказ!\n{serializator.ser(OrderClass().one_order(id=cart[3]))}"
-                f"\n\nСейчас напишите курс:")
+            print(cart)
+            print(str(callback_query.from_user.id) + ' - callback')
+            print(str(database.crud.order.OrderClass().one_order(id=cart[3]).telegram_id_operator) + ' - database')
+            if database.crud.order.OrderClass().one_order(id=cart[3]).telegram_id_operator == None:
+                await StateOperator.get_rate.set()
+                database.crud.order.OrderClass().update_order(id=cart[3],
+                                                              telegram_id_operator=callback_query.message.chat.id)
+                database.crud.operator.OperatorClass().update_operator(id_telegram_op=callback_query.message.chat.id)
+                await callback_query.message.reply(
+                    f"Вы приняли заявку!\n{serializator.ser(OrderClass().one_order(id=cart[3]))}"
+                    f"\n\nСейчас напишите курс:")
+            else:
+                await bot.send_message(callback_query.message.chat.id, 'Заявка уже оброблена!')
 
         case 'cancel_id':
-            await callback_query.message.reply(f"Вы отказали: Имя: {cart[1]}, id_telegram:{cart[2]}\nОн будет проинформирован")
-            await bot.send_message(cart[2], "Твой заказ отклонен!")
+            print(database.crud.order.OrderClass().one_order(id=cart[3]).telegram_id_operator)
+            if database.crud.order.OrderClass().one_order(id=cart[3]).telegram_id_operator == None:
+                database.crud.order.OrderClass().update_order(id=cart[3],
+                                                              telegram_id_operator=callback_query.message.chat.id)
+                await callback_query.message.reply(f"Вы отказали: Имя: {cart[1]}, id_telegram:{cart[2]}\nОн будет проинформирован")
+                await bot.send_message(cart[2], "Твоя заявка отклонен!")
+            else:
+                await bot.send_message(callback_query.message.chat.id, 'Заявка уже оброблена!')
 
         case 'client_accept_id':
-            await bot.send_message(cart[2], "Твой заказ принят! Жди сообщение с подскасками.")
-            await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Клиент {cart[3]} согласился.")
+            await bot.send_message(cart[2], "Твоя заявка принят! Жди сообщение с подскасками.")
+            await bot.send_message(database.crud.order.OrderClass().one_order(id=cart[1]).telegram_id_operator, f"Клиент {cart[3]} согласился.")
 
         case 'client_cancel_id':
             await bot.send_message(cart[2], "Хорошо!")
-            await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Клиент {cart[3]} отказался.")
+            print(database.crud.order.OrderClass().one_order(id=cart[1]))
+            await bot.send_message(database.crud.order.OrderClass().one_order(id=cart[1]).telegram_id_operator, f"Клиент {cart[3]} отказался.")
 
         case _:
             return None

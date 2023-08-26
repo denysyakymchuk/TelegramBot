@@ -1,6 +1,6 @@
 import json
 
-from sqlalchemy import Column, Integer, String, Boolean, Text
+from sqlalchemy import Column, Integer, String, Boolean, Text, Nullable
 
 from database.database import Base, engine
 

@@ -4,7 +4,6 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 import database.crud.operator
 from config import dp, bot
-from database.crud.operator import OperatorClass
 from keyboard.inline_buttons import get_user_im_responce
 
 
@@ -26,7 +25,6 @@ async def get_city_from(message: types.Message, state: FSMContext):
         await state.finish()
 
 
-
 @dp.message_handler(state=StateOperator.get_deadline)
 async def get_city_from(message: types.Message, state: FSMContext):
     try:
@@ -35,8 +33,8 @@ async def get_city_from(message: types.Message, state: FSMContext):
 
         from database.crud.order import OrderClass
 
-        user_model = OrderClass().update_order(id=data['id_order'], is_accept_op=True, reply_message=str("Курс: " + data['get_rate'] + " | " + "Сроки: " + data["get_deadline"]))
-        await bot.send_message(database.crud.operator.OperatorClass().one_operator(1).id_telegram_op, f"Сообщение отправлено!")
+        user_model = OrderClass().update_order(id=data['id_order'], is_accept_op=True, reply_message=str("Курс: " + data['get_rate'] + " \n" + "Сроки: " + data["get_deadline"]))
+        await bot.send_message(user_model.telegram_id_operator, f"Сообщение отправлено!")
         await bot.send_message(user_model.telegram_id, f"Твой заказ принят!\n {user_model.reply_message}", reply_markup=get_user_im_responce(user_model))
 
     except Exception as ex:
