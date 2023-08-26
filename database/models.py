@@ -10,6 +10,12 @@ class Order(Base):
 
     id = Column(Integer, primary_key=True)
     name_client = Column(String(255))
+    city_from = Column(String(255))
+    curr_set = Column(String(255))
+    total = Column(String(255))
+    city_to = Column(String(255))
+    curr_get = Column(String(255))
+    view_money = Column(String(255))
     telegram_id = Column(String(50))
     is_accept_op = Column(Boolean, default=False)
     is_accept_client = Column(Boolean, default=False)

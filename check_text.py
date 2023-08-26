@@ -1,5 +1,5 @@
 from config import w_another, w_cancel, bot
-from keyboard import start_key
+from keyboard.keyboard import start_key
 
 
 async def check_text(message, current_state, next_state, reply_mark, state, text_another, success_text, key, add=None):

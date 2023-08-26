@@ -4,8 +4,10 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.types import ParseMode
 
 import check_text
+import database.crud.order
 from config import dp, bot, w_another, w_cancel, w_another_ag
-from keyboard import another_rm, main_but, start_key, default_cities, h_curr_all, view_money, how_surr, how_curr_add, to_city, h_curr_a, non_cash
+from keyboard.inline_buttons import get_inline_keyboard
+from keyboard.keyboard import another_rm, main_but, start_key, default_cities, h_curr_all, view_money, how_surr, how_curr_add, to_city, h_curr_a, non_cash
 
 
 class StateOrder(StatesGroup):
@@ -41,7 +43,6 @@ async def get_city_to(message: types.Message, state: FSMContext):
                                 success_text="В какой валюте получить:", key='city_to')
 
 
-
 @dp.message_handler(state=StateOrder.curr_get)
 async def get_curr_get(message: types.Message, state: FSMContext):
     await check_text.check_text(message=message, current_state=StateOrder.curr_get, next_state=StateOrder.view_money,
@@ -54,28 +55,49 @@ async def get_view_money(message: types.Message, state: FSMContext):
     if message.text == str(w_another):
         await bot.send_message(message.chat.id, f"Напишите в каком виде хотите получить")
         await StateOrder.view_money.set()
+
     elif message.text == str(w_cancel):
         await state.finish()
+
     elif message.text == 'Безналичные':
         await bot.send_message(message.chat.id, f"На какое лицо:", reply_markup=non_cash)
         await StateOrder.view_money.set()
+
     else:
         if message.text == 'Юридичесское лицо':
             message.text = 'Юридичесское лицо. Безналичные'
         elif message.text == 'Физичесское лицо':
             message.text = 'Физичесское лицо. Безналичные'
+
         async with state.proxy() as data:
             data['view_money'] = message.text
 
-        async with state.proxy() as data:
-            await bot.send_message(message.chat.id, f"<i>Откуда:</i> {data['city_from']}\n"
-                                                    f"<i>В какой валюте:</i> {data['curr_set']}\n"
-                                                    f"<i>Сумма:</i> {data['total']}\n"
-                                                    f"<i>В какой город:</i> {data['city_to']}\n"
-                                                    f"<i>В какой валюте:</i> {data['curr_get']}\n"
-                                                    f"<i>В каком виде:</i> {data['view_money']}\n",reply_markup=start_key, parse_mode=ParseMode.HTML)
+        try:
+            async with state.proxy() as data:
+                await bot.send_message(message.chat.id, f"<i>Откуда:</i> {data['city_from']}\n"
+                                                        f"<i>В какой валюте:</i> {data['curr_set']}\n"
+                                                        f"<i>Сумма:</i> {data['total']}\n"
+                                                        f"<i>В какой город:</i> {data['city_to']}\n"
+                                                        f"<i>В какой валюте:</i> {data['curr_get']}\n"
+                                                        f"<i>В каком виде:</i> {data['view_money']}\n",
+                                    reply_markup=start_key, parse_mode=ParseMode.HTML)
+            #save data client
+            database.crud.order.OrderClass().store_order(telegram_id=message.chat.id,
+                                                         name_client=message.from_user.first_name,
+                                                         is_accept_op=False, is_accept_client=False,
+                                                         city_from=data['city_from'], curr_set=data['curr_set'],
+                                                         total=data['total'], city_to=data['city_to'],
+                                                         curr_get=data['curr_get'], view_money=data['view_money'])
 
-        await state.finish()
+            operator = database.crud.operator.OperatorClass().one_operator(1)
+            user = database.crud.order.OrderClass().one_order(telegram_id=message.chat.id)
+
+            from keyboard.inline_buttons import button_select_oper
+            await bot.send_message(chat_id=operator.id_telegram_op, text=user, reply_markup=get_inline_keyboard(user.telegram_id, user.name_client)) #send message to operator
+        except Exception as ex:
+            print(ex)
+        finally:
+            await state.finish()
 
 
 def register_handlers(dp: Dispatcher):
