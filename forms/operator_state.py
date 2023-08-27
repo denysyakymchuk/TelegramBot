@@ -15,8 +15,6 @@ class StateOperator(StatesGroup):
 @dp.message_handler(state=StateOperator.get_rate)
 async def get_city_from(message: types.Message, state: FSMContext):
     try:
-        async with state.proxy() as data:
-            data['get_rate'] = message.text
         await bot.send_message(message.chat.id, "Введите пожалуста сроки и другую важную информацию:")
         await StateOperator.get_deadline.set()
     except Exception as ex:
