@@ -7,3 +7,27 @@ def parse_buttons(place, buttons):
     split_elements = [element.split(', ') for element in first_element]
     return split_elements
 
+def search_city(data, selected_city):
+    dependencies_index = None
+    for index, row in enumerate(data):
+        if row[0] == 'Зависимости':
+            dependencies_index = index
+            break
+
+    if dependencies_index is not None:
+        # Розділимо рядок "Зависимості" на список міст і їх залежності
+        dependencies = data[dependencies_index][1:]
+        dependencies_dict = {}
+        for dependency in dependencies:
+            city, dependencies_info = dependency.split(': ')
+            dependencies_dict[city] = dependencies_info.split(', ')
+
+        # Ваш аргумент, наприклад "Майами"
+        # Отримаємо залежності для вибраного міста
+        if selected_city in dependencies_dict:
+            selected_dependencies = dependencies_dict[selected_city]
+            return selected_dependencies
+        else:
+            return []
+    else:
+        print("Рядок 'Зависимости' не знайдено")

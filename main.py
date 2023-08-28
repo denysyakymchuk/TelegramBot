@@ -24,43 +24,53 @@ async def send_welcome(message: types.Message, state: FSMContext):
 @dp.callback_query_handler()
 async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContext):
     cart = callback_query.data.split(':')
+    global buttons_api
 
     match cart[0]:
         case 'button':
             delete_f = await bot.delete_message(chat_id=callback_query.message.chat.id,
                                                 message_id=callback_query.message.message_id)
             button_text = callback_query.data.split(':')[1]
-            print(cart)
             n[f'{button_text}'] = button_text
             functions = Functions()
 
             if n['actual_question'] == 0:
                 delete_f
                 n['actual_question'] = 1
-                await functions.send_currency(callback_query.message.chat.id)
+                await functions.send_currency(callback_query.message.chat.id, button_text)
             elif n['actual_question'] == 1:
                 delete_f
                 n['actual_question'] = 2
                 await functions.send_total(callback_query.message.chat.id)
             elif n['actual_question'] == 2:
                 delete_f
-                n['actual_question'] = 3
-                await functions.send_currency_to(callback_query.message.chat.id)
-            elif n['actual_question'] == 3:
-                delete_f
                 n['actual_question'] = -1
-                await functions.send_currency_view(callback_query.message.chat.id)
+                await functions.send_currency_to(callback_query.message.chat.id, button_text)
+            # elif n['actual_question'] == 3:
+            #     delete_f
+            #     n['actual_question'] = -1
+            #     await functions.send_currency_view(callback_query.message.chat.id)
             elif n['actual_question'] == -1:
+                n['key_city'] = None
                 await bot.send_message(callback_query.message.chat.id, f"Все записано!")
-
 
         case 'next_page':
             global buttons_api
+
             keyboard = send_paginated_buttons(page=int(callback_query.data.split(':')[1]),
                                               number_cell=int(callback_query.data.split(':')[2]),
-                                              button_list_domestic=buttons_api)
+                                              button_list_domestic=buttons_api, is_city=n['key_city'])
             await bot.edit_message_reply_markup(callback_query.message.chat.id, callback_query.message.message_id,
                                                 reply_markup=keyboard)
+        case 'prev_page':
+            keyboard = send_paginated_buttons(page=int(callback_query.data.split(':')[1]),
+                                              number_cell=int(callback_query.data.split(':')[2]),
+                                              button_list_domestic=buttons_api, is_city=n['key_city'])
+            await bot.edit_message_reply_markup(callback_query.message.chat.id, callback_query.message.message_id,
+                                                reply_markup=keyboard)
+
+        case 'add_option':
+            print("Number cell is - " + str(cart[2]))
 
         case 'accept_id':
             async with state.proxy() as data:
@@ -123,7 +133,9 @@ async def echo(message: types.Message):
         case 'new admin':
             await send_paginated_buttons(message.chat.id, page=1)
         case 'api':
-            print(api_sheet.main())
+            a = api_sheet.main()
+            print(a)
+            serializator.search_city(a, "Москва")
     await message.answer(message.text)
 
 

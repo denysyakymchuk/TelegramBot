@@ -7,7 +7,8 @@ w_cancel = 'Отмена'
 w_another = 'Другое'
 
 n = {
-   'actual_question': 0
+   'actual_question': 0,
+   'key_city': None
 }
 
 
