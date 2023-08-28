@@ -7,7 +7,7 @@ buttons_per_page = 3
 
 def send_paginated_buttons(page, number_cell=None, button_list_domestic=None, is_city=None):
     button_list = []
-    if is_city is not None:
+    if is_city is not None and is_city != []:
         button_list = is_city
         n['key_city'] = is_city
     else:

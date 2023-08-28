@@ -37,6 +37,7 @@ class Functions:
     async def send_currency(self, message, selected_city):
         cities = serializator.search_city(self.buttons, selected_city)
         n['key_city'] = cities
+        print(cities)
         keyboard = send_paginated_buttons(page=1, number_cell=1, button_list_domestic=self.buttons, is_city=cities)
         await bot.send_message(message, "Выберите в какой валюте:", reply_markup=keyboard)
 
@@ -56,6 +57,6 @@ class Functions:
         await bot.send_message(message, "Выберите в какой валюте получить:", reply_markup=keyboard)
 
     async def send_currency_view(self, message):
-        n['key_city']=None
+        n['key_city'] = None
         keyboard = send_paginated_buttons(page=1, number_cell=4, button_list_domestic=self.buttons)
         await bot.send_message(message, "Выберите в каком виде получить:", reply_markup=keyboard)

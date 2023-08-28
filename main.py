@@ -1,6 +1,8 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.utils import executor
+
+from forms.form_data_state import GetFormDataState
 from forms.functions_c import Functions
 import api_sheet
 import database.crud.operator
@@ -28,29 +30,29 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
 
     match cart[0]:
         case 'button':
-            delete_f = await bot.delete_message(chat_id=callback_query.message.chat.id,
-                                                message_id=callback_query.message.message_id)
+
             button_text = callback_query.data.split(':')[1]
             n[f'{button_text}'] = button_text
             functions = Functions()
 
             if n['actual_question'] == 0:
-                delete_f
+                await bot.delete_message(chat_id=callback_query.message.chat.id,
+                                                    message_id=callback_query.message.message_id)
                 n['actual_question'] = 1
                 await functions.send_currency(callback_query.message.chat.id, button_text)
             elif n['actual_question'] == 1:
-                delete_f
+                await bot.delete_message(chat_id=callback_query.message.chat.id,
+                                         message_id=callback_query.message.message_id)
                 n['actual_question'] = 2
                 await functions.send_total(callback_query.message.chat.id)
             elif n['actual_question'] == 2:
-                delete_f
+                await bot.delete_message(chat_id=callback_query.message.chat.id,
+                                         message_id=callback_query.message.message_id)
                 n['actual_question'] = -1
                 await functions.send_currency_to(callback_query.message.chat.id, button_text)
-            # elif n['actual_question'] == 3:
-            #     delete_f
-            #     n['actual_question'] = -1
-            #     await functions.send_currency_view(callback_query.message.chat.id)
             elif n['actual_question'] == -1:
+                await bot.delete_message(chat_id=callback_query.message.chat.id,
+                                                    message_id=callback_query.message.message_id)
                 n['key_city'] = None
                 await bot.send_message(callback_query.message.chat.id, f"Все записано!")
 
@@ -60,6 +62,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
             keyboard = send_paginated_buttons(page=int(callback_query.data.split(':')[1]),
                                               number_cell=int(callback_query.data.split(':')[2]),
                                               button_list_domestic=buttons_api, is_city=n['key_city'])
+            print(callback_query.message.chat.id)
             await bot.edit_message_reply_markup(callback_query.message.chat.id, callback_query.message.message_id,
                                                 reply_markup=keyboard)
         case 'prev_page':
@@ -70,7 +73,18 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                                                 reply_markup=keyboard)
 
         case 'add_option':
+            await bot.delete_message(chat_id=callback_query.message.chat.id,
+                                     message_id=callback_query.message.message_id)
             print("Number cell is - " + str(cart[2]))
+            if int(cart[2]) == 0:
+                await bot.send_message(callback_query.message.chat.id, "Напиши с какого города:")
+                await GetFormDataState.get_option_city_from.set()
+            elif int(cart[2]) == 1:
+                await bot.send_message(callback_query.message.chat.id, "Напиши в какой валюте:")
+                await GetFormDataState.get_option_currently_from.set()
+            elif int(cart[2]) == 2:
+                await bot.send_message(callback_query.message.chat.id, "Напиши в какой город:")
+                await GetFormDataState.get_option_city_to.set()
 
         case 'accept_id':
             async with state.proxy() as data:
