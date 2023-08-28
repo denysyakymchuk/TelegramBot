@@ -1,6 +1,10 @@
 def ser(user):
     return f"id: {user.id}\nИмя: {user.name_client}\ntelegram id: {user.telegram_id}\nС какого города: {user.city_from}\nВ какой валюте: {user.curr_set}\nСумма: {user.total}\nВ какой город: {user.city_to}\nВ какой валюте получить: {user.curr_get}\nВ каком виде: {user.view_money}"
 
+def view_json_output(data):
+    print("TUUU")
+    return f"С какого города: {data['city_from']}\nВ какой валюте: {data['curr_set']}\nСумма: {data['total']}\nВ какой город: {data['city_to']}\nВ какой валюте получить: {data['curr_get']}"
+
 
 def parse_buttons(place, buttons):
     first_element = buttons[place]

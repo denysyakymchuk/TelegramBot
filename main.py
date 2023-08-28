@@ -2,6 +2,7 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.utils import executor
 
+import config
 from forms.form_data_state import GetFormDataState
 from forms.functions_c import Functions
 import api_sheet
@@ -19,7 +20,7 @@ from config import dp, bot, n
 async def send_welcome(message: types.Message, state: FSMContext):
     n['actual_question'] = 0
     global buttons_api
-    buttons_api = api_sheet.main()
+    buttons_api = config.get_keyboard(load=True)
     await Functions().send_city_from(message.chat.id)
 
 
@@ -27,34 +28,36 @@ async def send_welcome(message: types.Message, state: FSMContext):
 async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContext):
     cart = callback_query.data.split(':')
     global buttons_api
-
+    print(f"{n['actual_question']} - IS NUMBER")
     match cart[0]:
         case 'button':
-
             button_text = callback_query.data.split(':')[1]
-            n[f'{button_text}'] = button_text
             functions = Functions()
 
             if n['actual_question'] == 0:
+                n['city_from'] = cart[1]
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                                     message_id=callback_query.message.message_id)
                 n['actual_question'] = 1
                 await functions.send_currency(callback_query.message.chat.id, button_text)
             elif n['actual_question'] == 1:
+                n['curr_set'] = cart[1]
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
                 n['actual_question'] = 2
                 await functions.send_total(callback_query.message.chat.id)
             elif n['actual_question'] == 2:
+                n['city_to'] = cart[1]
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
                 n['actual_question'] = -1
                 await functions.send_currency_to(callback_query.message.chat.id, button_text)
             elif n['actual_question'] == -1:
+                n['curr_get'] = cart[1]
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                                     message_id=callback_query.message.message_id)
                 n['key_city'] = None
-                await bot.send_message(callback_query.message.chat.id, f"Все записано!")
+                await bot.send_message(callback_query.message.chat.id, f'Все записано!\n\n{serializator.view_json_output(n)}')
 
         case 'next_page':
             global buttons_api
@@ -77,14 +80,21 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                                      message_id=callback_query.message.message_id)
             print("Number cell is - " + str(cart[2]))
             if int(cart[2]) == 0:
+                n['actual_question'] = 1
                 await bot.send_message(callback_query.message.chat.id, "Напиши с какого города:")
                 await GetFormDataState.get_option_city_from.set()
             elif int(cart[2]) == 1:
+                n['actual_question'] = 2
                 await bot.send_message(callback_query.message.chat.id, "Напиши в какой валюте:")
                 await GetFormDataState.get_option_currently_from.set()
             elif int(cart[2]) == 2:
+                n['actual_question'] = 3
                 await bot.send_message(callback_query.message.chat.id, "Напиши в какой город:")
                 await GetFormDataState.get_option_city_to.set()
+            elif int(cart[2]) == 3:
+                n['actual_question'] = -1
+                await bot.send_message(callback_query.message.chat.id, "Напиши в какой валюте:")
+                await GetFormDataState.get_option_currently_to.set()
 
         case 'accept_id':
             async with state.proxy() as data:
