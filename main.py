@@ -30,6 +30,8 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
             delete_f = await bot.delete_message(chat_id=callback_query.message.chat.id,
                                                 message_id=callback_query.message.message_id)
             button_text = callback_query.data.split(':')[1]
+            print(cart)
+            n[f'{button_text}'] = button_text
             functions = Functions()
 
             if n['actual_question'] == 0:
@@ -49,7 +51,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 n['actual_question'] = -1
                 await functions.send_currency_view(callback_query.message.chat.id)
             elif n['actual_question'] == -1:
-                await bot.send_message(callback_query.message.chat.id, "Все записано!")
+                await bot.send_message(callback_query.message.chat.id, f"Все записано!")
 
 
         case 'next_page':
