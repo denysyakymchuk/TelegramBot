@@ -3,7 +3,7 @@ def ser(user):
 
 def view_json_output(data):
     print("TUUU")
-    return f"С какого города: {data['city_from']}\nВ какой валюте: {data['curr_set']}\nСумма: {data['total']}\nВ какой город: {data['city_to']}\nВ какой валюте получить: {data['curr_get']}"
+    return f"Sending from: {data['city_from']}\nWhat are you sending: {data['curr_set']}\nAmount: {data['total']}\nSending to: {data['city_to']}\nWhat are you receiving: {data['curr_get']}"
 
 
 def parse_buttons(place, buttons):

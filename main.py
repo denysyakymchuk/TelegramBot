@@ -16,7 +16,7 @@ from forms.operator_state import StateOperator
 from config import dp, bot, n
 
 
-@dp.message_handler(commands=['start'],  state=None)
+@dp.message_handler(commands=['s'],  state=None)
 async def send_welcome(message: types.Message, state: FSMContext):
     n['actual_question'] = 0
     global buttons_api
@@ -57,7 +57,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                                     message_id=callback_query.message.message_id)
                 n['key_city'] = None
-                await bot.send_message(callback_query.message.chat.id, f'Все записано!\n\n{serializator.view_json_output(n)}')
+                await bot.send_message(callback_query.message.chat.id, f'Got it!\n\n{serializator.view_json_output(n)}')
 
         case 'next_page':
             global buttons_api

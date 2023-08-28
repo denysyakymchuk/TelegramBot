@@ -14,16 +14,17 @@ class StateTotal(StatesGroup):
 
 @dp.message_handler(state=StateTotal.get_total)
 async def get_total(message: types.Message, state: FSMContext):
-    try:
-        n['total'] = message.text
+    mess = int(message.text)
+    print(type(mess))
+    if isinstance(mess, int):
+        n['total'] = '{:,}'.format(mess)
         await state.finish()
         n['actual_question'] = 2
         await Functions().send_city_to(message.chat.id)
+    else:
+        await message.reply("Только цифры!")
+        await StateTotal.get_total.set()
 
-    except Exception as ex:
-        from write_logs import write_logs
-        write_logs.write_logs(ex)
-        await state.finish()
 
 
 class Functions:
@@ -42,7 +43,7 @@ class Functions:
 
     async def send_total(self, message):
         n['key_city'] = None
-        await bot.send_message(message, "Напишите сумму:")
+        await bot.send_message(message, "Введите сумму:")
         await StateTotal.get_total.set()
 
     async def send_city_to(self, message):

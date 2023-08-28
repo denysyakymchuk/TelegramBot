@@ -16,7 +16,6 @@ class GetFormDataState(StatesGroup):
 @dp.message_handler(state=GetFormDataState.get_option_city_from)
 async def get_option_city_from(message: types.Message, state: FSMContext):
         n['key_city'] = None
-        n['actual_question'] = 0
         n['city_from'] = message.text
         await state.finish()
         await Functions().send_currency(message.chat.id, selected_city=message.text)
@@ -25,7 +24,6 @@ async def get_option_city_from(message: types.Message, state: FSMContext):
 @dp.message_handler(state=GetFormDataState.get_option_currently_from)
 async def get_option_currently_from(message: types.Message, state: FSMContext):
         n['key_city'] = None
-        n['actual_question'] = 1
         n['curr_set'] = message.text
         await state.finish()
         await message.reply("Напиши сумму:")
@@ -48,5 +46,5 @@ async def get_option_currently_to(message: types.Message, state: FSMContext):
         n['actual_question'] = 0
         n['curr_get'] = message.text
         await state.finish()
-        await message.reply(f'Все записано!\n\n{view_json_output(n)}')
+        await message.reply(f'Got it!\n\n{view_json_output(n)}')
 
