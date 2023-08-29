@@ -5,7 +5,6 @@ def ser_admin(user):
     return f"Username: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceving: {user.curr_get}"
 
 def view_json_output(data):
-    print("TUUU")
     return f"Sending from: {data['city_from']}\nWhat are you sending: {data['curr_set']}\nAmount: {data['total']}\nSending to: {data['city_to']}\nWhat are you receiving: {data['curr_get']}"
 
 
@@ -38,3 +37,11 @@ def search_city(data, selected_city):
             return []
     else:
         print("Рядок 'Зависимости' не знайдено")
+
+def get_operators_from_sheet(values):
+    id_operators_values = []
+    for entry in values:
+        if len(entry) >= 2 and entry[0] == 'ID OPERATORS':
+            id_operators_values.extend(entry[1:])
+
+    return id_operators_values

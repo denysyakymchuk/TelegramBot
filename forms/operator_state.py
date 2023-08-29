@@ -32,9 +32,10 @@ async def get_city_from(message: types.Message, state: FSMContext):
 
         from database.crud.order import OrderClass
 
-        user_model = OrderClass().update_order(id=data['id_order'], is_accept_op=True, reply_message=str("Курс: " + data['get_rate'] + " \n" + "Сроки: " + data["get_deadline"]))
+        # user_model = OrderClass().update_order(id=data['id_order'], is_accept_op=True, reply_message=str("Курс: " + data['get_rate'] + " \n" + "Сроки: " + data["get_deadline"]))
+        user_model = OrderClass().update_order(id=data['id_order'], is_accept_op=True, reply_message=str(f"Your request has been accepted.\nExchange rate: {data['get_rate']}\nTiming: {data['get_deadline']}"))
         await bot.send_message(user_model.telegram_id_operator, f"Сообщение отправлено!")
-        await bot.send_message(user_model.telegram_id, f"Твой заказ принят!\n {user_model.reply_message}", reply_markup=get_user_im_responce(user_model))
+        await bot.send_message(user_model.telegram_id, f"{user_model.reply_message}", reply_markup=get_user_im_responce(user_model))
         await state.finish()
 
 

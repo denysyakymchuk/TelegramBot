@@ -1,12 +1,5 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-button_accept_client = InlineKeyboardButton(text="Принять", callback_data='accept_client')
-button_cancel_client = InlineKeyboardButton(text="Отказать", callback_data='cancel_client')
-button_select_client = InlineKeyboardMarkup().add(button_accept_client, button_accept_client)
-
-button_spam_text = InlineKeyboardButton(text="Ответ отправлен", callback_data='spam')
-button_spam = InlineKeyboardMarkup().add(button_spam_text)
-
 
 def get_inline_keyboard(user):
     button_accept_operator = InlineKeyboardButton(
@@ -23,11 +16,11 @@ def get_inline_keyboard(user):
 
 def get_user_im_responce(user):
     button_accept_client = InlineKeyboardButton(
-        text="Согласиться",
+        text="Agree",
         callback_data=f"client_accept_id:{user.id}:{user.telegram_id}:{user.name_client}"  # Передаем аргумент в callback_data
     )
     button_cancel_client = InlineKeyboardButton(
-        text='Отказаться',
+        text='Cancel',
         callback_data=f'client_cancel_id:{user.id}:{user.telegram_id}:{user.name_client}'
     )
     inline_kb_client = InlineKeyboardMarkup().add(button_accept_client, button_cancel_client)
