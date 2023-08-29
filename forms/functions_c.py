@@ -2,7 +2,6 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from config import get_keyboard
-import api_sheet
 import serializator
 from config import bot, dp, n
 from keyboard.inline_form import send_paginated_buttons
@@ -17,9 +16,10 @@ async def get_total(message: types.Message, state: FSMContext):
     mess = int(message.text)
     print(type(mess))
     if isinstance(mess, int):
-        n['total'] = '{:,}'.format(mess)
+        n['total'] = '{:,}'.format(mess).replace(',', ' ')
         await state.finish()
         n['actual_question'] = 2
+        n['id_th'] = message.chat.id
         await Functions().send_city_to(message.chat.id)
     else:
         await message.reply("Только цифры!")

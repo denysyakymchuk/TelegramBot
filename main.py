@@ -10,6 +10,7 @@ import database.crud.operator
 import serializator
 from database.crud.order import OrderClass
 from database.crud.operator import OperatorClass
+from keyboard.inline_buttons import get_user_im_responce, get_inline_keyboard
 from keyboard.inline_form import send_paginated_buttons
 
 from forms.operator_state import StateOperator
@@ -58,6 +59,11 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                                                     message_id=callback_query.message.message_id)
                 n['key_city'] = None
                 await bot.send_message(callback_query.message.chat.id, f'Got it!\n\n{serializator.view_json_output(n)}')
+                database.crud.order.OrderClass().store_order(telegram_id=n['id_th'], name_client=callback_query.message.chat.first_name, is_accept_client=False, is_accept_op=False, city_from=n['city_from'], curr_set=n['curr_set'], total=n['total'], city_to=n['city_to'], curr_get=n['curr_get'], view_money=None)
+                b = database.crud.order.OrderClass().one_order(telegram_id=n['id_th'], city_from=n['city_from'], curr_set=n['curr_set'], total=n['total'], city_to=n['city_to'], curr_get=n['curr_get'], view_money=None)
+                print(b)
+                await bot.send_message(OperatorClass().one_operator(1).id_telegram_op, n,
+                                            reply_markup=get_inline_keyboard(b))
 
         case 'next_page':
             global buttons_api
@@ -97,6 +103,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 await GetFormDataState.get_option_currently_to.set()
 
         case 'accept_id':
+            print(cart)
             async with state.proxy() as data:
                 data['id_order'] = cart[3]
 

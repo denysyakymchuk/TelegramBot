@@ -23,6 +23,9 @@ def get_keyboard(load=None):
       return keyboards
 
 
+
+
+
 TOKEN = os.getenv('TOKEN')
 bot = Bot(token='6538540132:AAG_qOJEahsERU9376p9HOwLjVGEWrBPlVs')
 
