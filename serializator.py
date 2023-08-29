@@ -1,5 +1,8 @@
 def ser(user):
-    return f"id: {user.id}\nИмя: {user.name_client}\ntelegram id: {user.telegram_id}\nС какого города: {user.city_from}\nВ какой валюте: {user.curr_set}\nСумма: {user.total}\nВ какой город: {user.city_to}\nВ какой валюте получить: {user.curr_get}\nВ каком виде: {user.view_money}"
+    return f"id: {user.id}\nUsername: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceving: {user.curr_get}"
+
+def ser_admin(user):
+    return f"Username: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceving: {user.curr_get}"
 
 def view_json_output(data):
     print("TUUU")
