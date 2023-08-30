@@ -1,3 +1,4 @@
+import loguru
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
@@ -15,9 +16,7 @@ def get_inline_keyboard(user):
         return inline_kb
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)
 
 
 def get_user_im_responce(user):
@@ -34,6 +33,4 @@ def get_user_im_responce(user):
         return inline_kb_client
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)

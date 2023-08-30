@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import os.path
 
+import loguru
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -54,6 +55,4 @@ def main():
             return []
         return values
     except HttpError as err:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{err}")
+        loguru.logger.critical(err)

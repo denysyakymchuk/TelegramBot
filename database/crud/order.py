@@ -10,24 +10,24 @@ class OrderClass:
         return session.query(Order).all()
 
     def one_order(self, id=None, telegram_id=None, city_from=None, curr_set=None,
-                  total=None, city_to=None, curr_get=None, view_money=None):
+                  total=None, city_to=None, curr_get=None):
         if telegram_id is None:
             return session.query(Order).filter_by(id=id).first()
         else:
             return session.query(Order).filter_by(telegram_id=telegram_id,
                                                   city_from=city_from, curr_set=curr_set, total=total,
-                                                  city_to=city_to, curr_get=curr_get, view_money=view_money).first()
+                                                  city_to=city_to, curr_get=curr_get).first()
 
     def store_order(self, name_client, telegram_id,
                     is_accept_op, is_accept_client,
                     city_from, curr_set, total,
-                    city_to, curr_get, view_money,
+                    city_to, curr_get,
                     reply_message=None):
         data = Order(name_client=name_client,
                      telegram_id=telegram_id, is_accept_op=is_accept_op,
                      is_accept_client=is_accept_client,
                      city_from=city_from, curr_set=curr_set, total=total,
-                     city_to=city_to, curr_get=curr_get, view_money=view_money,
+                     city_to=city_to, curr_get=curr_get,
                      reply_message=reply_message)
         session.add(data)
         session.commit()

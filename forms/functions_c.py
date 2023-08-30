@@ -1,10 +1,13 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
+
+import logconfig
 from config import get_keyboard
 import serializator
 from config import bot, dp, n
 from keyboard.inline_form import send_paginated_buttons
+from loguru import logger
 
 
 class StateTotal(StatesGroup):
@@ -14,26 +17,31 @@ class StateTotal(StatesGroup):
 @dp.message_handler(state=StateTotal.get_total)
 async def get_total(message: types.Message, state: FSMContext):
     try:
+        mess = None
         try:
             mess = int(message.text)
+
+            if isinstance(mess, int):
+                n['total'] = '{:,}'.format(mess).replace(',', ' ')
+                n['actual_question'] = 2
+                n['id_th'] = message.chat.id
+                logger.info(f'Enter amount. Message: {message.text}')
+                await state.finish()
+                await Functions().send_city_to(message.chat.id)
+            else:
+                await message.reply("Must be only numbers!")
+                logger.info(f'Enter no valid amount. Message: {message.text}')
+                await StateTotal.get_total.set()
+
         except:
             await message.reply("Must be only numbers!")
+            logger.info(f'Enter no valid amount. Message: {message.text}')
             await StateTotal.get_total.set()
 
-        if isinstance(mess, int):
-            n['total'] = '{:,}'.format(mess).replace(',', ' ')
-            n['actual_question'] = 2
-            n['id_th'] = message.chat.id
-            await state.finish()
-            await Functions().send_city_to(message.chat.id)
-        else:
-            await message.reply("Must be only numbers!")
-            await StateTotal.get_total.set()
+
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        logger.critical(error)
 
 
 class Functions:
@@ -46,8 +54,6 @@ class Functions:
             await bot.send_message(message, "Select from which city you want to send.", reply_markup=keyboard)
 
         except Exception as error:
-            from logconfig import setup_logging
-            logger = setup_logging()
             logger.error(f"{error}")
 
     async def send_currency(self, message, selected_city):
@@ -58,8 +64,6 @@ class Functions:
             await bot.send_message(message, "Select in which currency:", reply_markup=keyboard)
 
         except Exception as error:
-            from logconfig import setup_logging
-            logger = setup_logging()
             logger.error(f"{error}")
 
     async def send_total(self, message):
@@ -69,8 +73,6 @@ class Functions:
             await StateTotal.get_total.set()
 
         except Exception as error:
-            from logconfig import setup_logging
-            logger = setup_logging()
             logger.error(f"{error}")
 
     async def send_city_to(self, message):
@@ -79,8 +81,6 @@ class Functions:
             await bot.send_message(message, "Select the city to send to:", reply_markup=keyboard)
 
         except Exception as error:
-            from logconfig import setup_logging
-            logger = setup_logging()
             logger.error(f"{error}")
 
     async def send_currency_to(self, message, selected_city):
@@ -91,6 +91,5 @@ class Functions:
             await bot.send_message(message, "Select the currency to receive in:", reply_markup=keyboard)
 
         except Exception as error:
-            from logconfig import setup_logging
-            logger = setup_logging()
             logger.error(f"{error}")
+

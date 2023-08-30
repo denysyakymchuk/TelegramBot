@@ -15,7 +15,6 @@ class Order(Base):
     total = Column(String(255))
     city_to = Column(String(255))
     curr_get = Column(String(255))
-    view_money = Column(String(255))
     telegram_id = Column(String(50))
     telegram_id_operator = Column(String(50))
     is_accept_op = Column(Boolean, default=None)
@@ -33,8 +32,8 @@ class Order(Base):
                 "curr_set": self.curr_set,
                 "total": self.total,
                 "city_to": self.city_to,
-                "curr_get": self.curr_get,
-                "view_money": self.view_money}
+                "curr_get": self.curr_get
+                }
         return json.dumps(data)
 
     def __str__(self):
@@ -51,23 +50,6 @@ class Order(Base):
                 "city_to": self.city_to,
                 "curr_get": self.curr_get,
                 "view_money": self.view_money}
-        return json.dumps(data)
-
-
-class Operator(Base):
-    __tablename__ = 'operators'
-
-    id = Column(Integer, primary_key=True)
-    name_operator = Column(String(255))
-    id_telegram_op = Column(String(50))
-    is_free = Column(Boolean)
-
-    def __repr__(self):
-        data = {"id_telegram_op": self.id_telegram_op}
-        return json.dumps(data)
-    
-    def __str__(self):
-        data = {"id_telegram_op": self.id_telegram_op}
         return json.dumps(data)
 
 

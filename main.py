@@ -1,3 +1,6 @@
+import csv
+
+import loguru
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.utils import executor
@@ -6,24 +9,30 @@ import config
 import tools
 from forms.form_data_state import GetFormDataState
 from forms.functions_c import Functions
-import database.crud.operator
+import database.crud
 import serializator
 from database.crud.order import OrderClass
 from keyboard.inline_form import send_paginated_buttons
 
 from forms.operator_state import StateOperator
 from config import dp, bot, n, get_keyboard
-from logconfig import setup_logging
+from loguru import logger
+
+from logconfig import init_csv_logger
+
+logger.add("logs.csv", format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level="INFO")
 
 
 @dp.message_handler(commands=['start'],  state=None)
 async def send_welcome(message: types.Message):
     try:
+        logger.info(f'/start user  - {message.chat.id}')
         n['actual_question'] = 0
         get_keyboard(load=True)
         await Functions().send_city_from(message.chat.id)
+
     except Exception as error:
-        logger.error(f"{error}")
+        logger.critical(error)
 
 
 @dp.callback_query_handler()
@@ -68,14 +77,17 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
 
                 await bot.edit_message_reply_markup(callback_query.message.chat.id, callback_query.message.message_id,
                                                     reply_markup=keyboard)
+                logger.info('Next page')
             case 'prev_page':
                 keyboard = send_paginated_buttons(page=int(callback_query.data.split(':')[1]),
                                                   number_cell=int(callback_query.data.split(':')[2]),
                                                   button_list_domestic=get_keyboard(), is_city=n['key_city'])
                 await bot.edit_message_reply_markup(callback_query.message.chat.id, callback_query.message.message_id,
                                                     reply_markup=keyboard)
+                logger.info('Preview page')
 
             case 'add_option':
+                logger.info('Pressed custom button')
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
 
@@ -100,16 +112,20 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 async with state.proxy() as data:
                     data['id_order'] = cart[3]
 
+                ###
                 if database.crud.order.OrderClass().one_order(id=cart[3]).telegram_id_operator == None:
+                    logger.info('Request accepted from operator')
+                    ###
                     await StateOperator.get_rate.set()
                     database.crud.order.OrderClass().update_order(id=cart[3],
                                                                   telegram_id_operator=callback_query.message.chat.id)
-                    database.crud.operator.OperatorClass().update_operator(id_telegram_op=callback_query.message.chat.id)
+
                     await callback_query.message.reply(
                         f"Accepted!\n{serializator.ser(OrderClass().one_order(id=cart[3]))}"
                         f"\n\nСейчас напишите курс:")
                 else:
                     await bot.send_message(callback_query.message.chat.id, 'Заявка уже оброблена!')
+                    logger.info('Request already accepted')
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
 
@@ -119,31 +135,36 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                                                                   telegram_id_operator=callback_query.message.chat.id)
                     await callback_query.message.reply(f"Canceled: Username: {cart[1]}, Telegram id:{cart[2]}\nHe will informed!")
                     await bot.send_message(cart[2], "Our apologies, but we are not able to fulfill your request at the moment!")
+                    logger.info('Request canceled from operator')
                 else:
                     await bot.send_message(callback_query.message.chat.id, 'Заявка уже оброблена!')
+                    logger.info('Request already accepted from operator')
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
+
 
             case 'client_accept_id':
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
                 await bot.send_message(cart[2], "Your request has been accepted.")
-                ###Тут буде розсилка на інші аккаунти
+                order = database.crud.order.OrderClass().update_order(id=cart[1], is_accept_client=True)
+                await tools.send_message_to_admins(serializator.ser(order))
                 await bot.send_message(database.crud.order.OrderClass().one_order(id=cart[1]).telegram_id_operator, f"Клиент {cart[3]} согласился.")
+                logger.info('Request accepted from client')
 
             case 'client_cancel_id':
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
                 await bot.send_message(cart[2], "Okey!")
                 await bot.send_message(database.crud.order.OrderClass().one_order(id=cart[1]).telegram_id_operator, f"Клиент {cart[3]} отказался.")
+                logger.info('Request canceled from client')
             case _:
-                logger.error("No find button parameters.")
+                pass
 
     except Exception as error:
-        logger.critical(f"{error}")
+        logger.critical(error)
 
 
 if __name__ == '__main__':
-    logger = setup_logging()
-    logger.info("Run bot.")
+    init_csv_logger()
     executor.start_polling(dp, skip_updates=True)

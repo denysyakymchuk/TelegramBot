@@ -1,5 +1,6 @@
 import os
 
+import loguru
 from aiogram import Dispatcher, Bot
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
@@ -26,11 +27,7 @@ def get_keyboard(load=None):
          return keyboards
 
    except Exception as error:
-      from logconfig import setup_logging
-      logger = setup_logging()
-      logger.critical(f"{error}")
-
-
+      loguru.logger.critical(error)
 
 
 TOKEN = os.getenv('TOKEN')

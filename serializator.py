@@ -1,11 +1,14 @@
+import loguru
+
+import config
+
+
 def ser(user):
     try:
         return f"id: {user.id}\nUsername: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceving: {user.curr_get}"
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)
 
 
 def ser_admin(user):
@@ -13,9 +16,7 @@ def ser_admin(user):
         return f"Username: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceving: {user.curr_get}"
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)
 
 
 def view_json_output(data):
@@ -23,9 +24,7 @@ def view_json_output(data):
         return f"Sending from: {data['city_from']}\nWhat are you sending: {data['curr_set']}\nAmount: {data['total']}\nSending to: {data['city_to']}\nWhat are you receiving: {data['curr_get']}"
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)
 
 
 def parse_buttons(place, buttons):
@@ -35,9 +34,7 @@ def parse_buttons(place, buttons):
         return split_elements
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)
 
 
 def search_city(data, selected_city):
@@ -67,9 +64,7 @@ def search_city(data, selected_city):
             return []
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)
 
 
 def get_operators_from_sheet(values):
@@ -82,6 +77,27 @@ def get_operators_from_sheet(values):
         return id_operators_values
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)
+
+
+def get_admins_from_sheet():
+    try:
+        id_admins = None
+
+        for item in config.get_keyboard():
+            if len(item) > 1 and item[0] == 'ID ADMINS':
+                id_admins = item[1]
+                break
+
+        if id_admins:
+            id_admins_array = id_admins.split(', ')
+            return id_admins_array
+        else:
+            return []
+
+    except Exception as error:
+        loguru.logger.critical(error)
+
+
+def contains_digits(input_string):
+    return any(char.isdigit() for char in input_string)

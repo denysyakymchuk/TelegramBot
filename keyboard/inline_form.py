@@ -1,3 +1,4 @@
+import loguru
 from aiogram import types
 import serializator
 from config import n
@@ -41,6 +42,4 @@ def send_paginated_buttons(page, number_cell=None, button_list_domestic=None, is
         return keyboard
 
     except Exception as error:
-        from logconfig import setup_logging
-        logger = setup_logging()
-        logger.error(f"{error}")
+        loguru.logger.critical(error)

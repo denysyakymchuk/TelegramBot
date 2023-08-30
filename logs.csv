@@ -1,0 +1,35 @@
+Time,Level,Message
+2023-08-30 19:53:14 | INFO | /start user  - 897892225
+2023-08-30 19:53:20 | INFO | Pressed custom button
+2023-08-30 19:53:23 | INFO | Enter sending currency - ZLT
+2023-08-30 19:53:27 | INFO | Enter no valid amount. Message: 2d
+2023-08-30 19:53:29 | INFO | Enter amount. Message: 42342
+2023-08-30 19:53:44 | INFO | Request canceled from operator
+2023-08-30 19:53:48 | INFO | Request accepted from operator
+2023-08-30 19:54:19 | INFO | Enter rate. User: 5141467887. Message: Сегодня курс будет по 4.23, но завтра уже будет другой
+2023-08-30 19:54:42 | INFO | Enter timing. User: 5141467887. Message: до сегодня
+2023-08-30 19:54:51 | INFO | Request accepted from client
+Time,Level,Message
+2023-08-30 19:56:00 | INFO | /start user  - 897892225
+2023-08-30 19:56:19 | INFO | Enter amount. Message: 2131231
+2023-08-30 19:56:59 | INFO | Request accepted from operator
+2023-08-30 19:57:06 | INFO | Enter rate. User: 5141467887. Message: Ароавмпп
+2023-08-30 19:57:08 | INFO | Enter rate. User: 5141467887. Message: Рпаирпп
+2023-08-30 19:57:19 | INFO | Enter timing. User: 5141467887. Message: Чирн
+2023-08-30 19:57:29 | INFO | Request accepted from client
+Time,Level,Message
+2023-08-30 19:59:00 | INFO | /start user  - 897892225
+2023-08-30 19:59:07 | INFO | Enter amount. Message: 21312
+2023-08-30 19:59:14 | INFO | Request accepted from operator
+2023-08-30 19:59:19 | INFO | Enter rate. User: 5141467887. Message: Курс
+2023-08-30 19:59:23 | INFO | Enter timing. User: 5141467887. Message: Випа
+2023-08-30 19:59:27 | INFO | Request accepted from client
+2023-08-30 20:02:49 | INFO | /start user  - 897892225
+2023-08-30 20:02:53 | INFO | Next page
+2023-08-30 20:02:55 | INFO | Next page
+2023-08-30 21:59:54 | INFO | /start user  - 897892225
+2023-08-30 22:00:01 | INFO | Pressed custom button
+2023-08-30 22:00:04 | INFO | Enter sending currency - curr
+2023-08-30 22:00:06 | INFO | Enter no valid amount. Message: dwe
+2023-08-30 22:00:07 | INFO | Enter amount. Message: 34234
+2023-08-30 22:00:17 | INFO | Request canceled from operator
