@@ -12,7 +12,6 @@ class OrderClass:
     def one_order(self, id=None, telegram_id=None, city_from=None, curr_set=None,
                   total=None, city_to=None, curr_get=None, view_money=None):
         if telegram_id is None:
-            print('TEST')
             return session.query(Order).filter_by(id=id).first()
         else:
             return session.query(Order).filter_by(telegram_id=telegram_id,

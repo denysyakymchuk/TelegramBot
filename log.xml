@@ -1,0 +1,9 @@
+<log><time>2023-08-30 13:47:39,728</time><level>INFO</level><message>Run bot.</message></log>
+<log><time>2023-08-30 13:47:45,930</time><level>INFO</level><message>Run bot.</message></log>
+<log><time>2023-08-30 14:05:55,628</time><level>INFO</level><message>Run bot.</message></log>
+<log><time>2023-08-30 14:44:06,350</time><level>INFO</level><message>Run bot.</message></log>
+<log><time>2023-08-30 14:44:38,781</time><level>ERROR</level><message>invalid literal for int() with base 10: '8y798789789'</message></log>
+<log><time>2023-08-30 14:44:38,781</time><level>ERROR</level><message>invalid literal for int() with base 10: '8y798789789'</message></log>
+<log><time>2023-08-30 14:47:49,775</time><level>INFO</level><message>Run bot.</message></log>
+<log><time>2023-08-30 14:48:01,843</time><level>ERROR</level><message>cannot access local variable 'mess' where it is not associated with a value</message></log>
+<log><time>2023-08-30 14:48:01,843</time><level>ERROR</level><message>cannot access local variable 'mess' where it is not associated with a value</message></log>

@@ -14,14 +14,21 @@ n = {
 }
 
 keyboards = api_sheet.main()
-def get_keyboard(load=None):
-   global keyboards
-   if load is True:
-      keyboards = api_sheet.main()
-      return keyboards
-   else:
-      return keyboards
 
+
+def get_keyboard(load=None):
+   try:
+      global keyboards
+      if load is True:
+         keyboards = api_sheet.main()
+         return keyboards
+      else:
+         return keyboards
+
+   except Exception as error:
+      from logconfig import setup_logging
+      logger = setup_logging()
+      logger.critical(f"{error}")
 
 
 

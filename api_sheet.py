@@ -48,12 +48,12 @@ def main():
         values = result.get('values', [])
 
         if not values:
-            print('No data found.')
-            return
+            from logconfig import setup_logging
+            logger = setup_logging()
+            logger.error(f"No data found")
+            return []
         return values
     except HttpError as err:
-        print(err)
-
-
-if __name__ == '__main__':
-    main()
+        from logconfig import setup_logging
+        logger = setup_logging()
+        logger.error(f"{err}")
