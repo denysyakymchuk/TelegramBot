@@ -47,12 +47,14 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
 
                 if n['actual_question'] == 0:
                     n['city_from'] = cart[1]
+                    logger.info('Select city sending from')
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
                                                         message_id=callback_query.message.message_id)
                     n['actual_question'] = 1
                     await functions.send_currency(callback_query.message.chat.id, button_text)
                 elif n['actual_question'] == 1:
                     n['curr_set'] = cart[1]
+                    logger.info('Select sending currency')
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
                                              message_id=callback_query.message.message_id)
                     n['actual_question'] = 2
@@ -61,10 +63,12 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                     n['city_to'] = cart[1]
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
                                              message_id=callback_query.message.message_id)
+                    logger.info('Select city sending to')
                     n['actual_question'] = -1
                     await functions.send_currency_to(callback_query.message.chat.id, button_text)
                 elif n['actual_question'] == -1:
                     n['curr_get'] = cart[1]
+                    logger.info('Select currency receiving')
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
                                                         message_id=callback_query.message.message_id)
                     n['key_city'] = None

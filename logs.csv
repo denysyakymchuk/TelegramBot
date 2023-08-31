@@ -1,100 +1,39 @@
+2023-08-31 11:44:59 | INFO | Request canceled from operator
+2023-08-31 11:45:04 | INFO | /start user  - 5141467887
+2023-08-31 11:45:07 | INFO | Select city sending from
+2023-08-31 11:45:09 | INFO | Select sending currency
+2023-08-31 11:45:13 | INFO | Enter amount. Message: 55556
+2023-08-31 11:45:16 | INFO | Select city sending to
+2023-08-31 11:45:21 | INFO | Select currency receiving
+2023-08-31 11:45:29 | INFO | Request already accepted
+2023-08-31 11:45:29 | INFO | Request canceled from operator
+2023-08-31 11:45:32 | INFO | Request already accepted
 Time,Level,Message
-2023-08-30 19:53:14 | INFO | /start user  - 897892225
-2023-08-30 19:53:20 | INFO | Pressed custom button
-2023-08-30 19:53:23 | INFO | Enter sending currency - ZLT
-2023-08-30 19:53:27 | INFO | Enter no valid amount. Message: 2d
-2023-08-30 19:53:29 | INFO | Enter amount. Message: 42342
-2023-08-30 19:53:44 | INFO | Request canceled from operator
-2023-08-30 19:53:48 | INFO | Request accepted from operator
-2023-08-30 19:54:19 | INFO | Enter rate. User: 5141467887. Message: Сегодня курс будет по 4.23, но завтра уже будет другой
-2023-08-30 19:54:42 | INFO | Enter timing. User: 5141467887. Message: до сегодня
-2023-08-30 19:54:51 | INFO | Request accepted from client
-Time,Level,Message
-2023-08-30 19:56:00 | INFO | /start user  - 897892225
-2023-08-30 19:56:19 | INFO | Enter amount. Message: 2131231
-2023-08-30 19:56:59 | INFO | Request accepted from operator
-2023-08-30 19:57:06 | INFO | Enter rate. User: 5141467887. Message: Ароавмпп
-2023-08-30 19:57:08 | INFO | Enter rate. User: 5141467887. Message: Рпаирпп
-2023-08-30 19:57:19 | INFO | Enter timing. User: 5141467887. Message: Чирн
-2023-08-30 19:57:29 | INFO | Request accepted from client
-Time,Level,Message
-2023-08-30 19:59:00 | INFO | /start user  - 897892225
-2023-08-30 19:59:07 | INFO | Enter amount. Message: 21312
-2023-08-30 19:59:14 | INFO | Request accepted from operator
-2023-08-30 19:59:19 | INFO | Enter rate. User: 5141467887. Message: Курс
-2023-08-30 19:59:23 | INFO | Enter timing. User: 5141467887. Message: Випа
-2023-08-30 19:59:27 | INFO | Request accepted from client
-2023-08-30 20:02:49 | INFO | /start user  - 897892225
-2023-08-30 20:02:53 | INFO | Next page
-2023-08-30 20:02:55 | INFO | Next page
-2023-08-30 21:59:54 | INFO | /start user  - 897892225
-2023-08-30 22:00:01 | INFO | Pressed custom button
-2023-08-30 22:00:04 | INFO | Enter sending currency - curr
-2023-08-30 22:00:06 | INFO | Enter no valid amount. Message: dwe
-2023-08-30 22:00:07 | INFO | Enter amount. Message: 34234
-2023-08-30 22:00:17 | INFO | Request canceled from operator
-Time,Level,Message
-Time,Level,Message
-2023-08-31 11:10:58 | INFO | /start user  - 1006565694
-2023-08-31 11:11:07 | INFO | Next page
-2023-08-31 11:11:08 | INFO | Next page
-2023-08-31 11:11:15 | INFO | Enter amount. Message: 344
-2023-08-31 11:11:17 | INFO | Next page
-2023-08-31 11:11:19 | INFO | Next page
-2023-08-31 11:11:21 | INFO | Pressed custom button
-2023-08-31 11:11:33 | INFO | Enter sending to city - Do
-2023-08-31 11:11:51 | INFO | Request accepted from operator
-2023-08-31 11:11:54 | INFO | Enter rate. User: 5141467887. Message: wefaw
-2023-08-31 11:11:56 | INFO | Enter timing. User: 5141467887. Message: ferafaref
-2023-08-31 11:12:01 | INFO | Request accepted from client
-2023-08-31 11:12:44 | INFO | /start user  - 897892225
-2023-08-31 11:12:48 | INFO | Next page
-2023-08-31 11:12:49 | INFO | Next page
-2023-08-31 11:12:50 | INFO | Preview page
-2023-08-31 11:12:59 | INFO | Enter amount. Message: 234556
-2023-08-31 11:13:01 | INFO | Next page
-2023-08-31 11:14:00 | INFO | Request canceled from operator
-2023-08-31 11:14:11 | INFO | /start user  - 897892225
-2023-08-31 11:14:21 | INFO | Enter amount. Message: 636272
-2023-08-31 11:14:28 | INFO | Request accepted from operator
-2023-08-31 11:14:30 | INFO | Enter rate. User: 5141467887. Message: jokpo
-2023-08-31 11:14:31 | INFO | Enter timing. User: 5141467887. Message: ,l;mpl
-2023-08-31 11:14:34 | INFO | Request accepted from client
-Time,Level,Message
-2023-08-31 11:16:33 | INFO | /start user  - 897892225
-2023-08-31 11:16:35 | INFO | Next page
-2023-08-31 11:16:41 | INFO | Enter amount. Message: 73728
-2023-08-31 11:17:06 | INFO | Request canceled from operator
-Time,Level,Message
-2023-08-31 11:18:12 | INFO | /start user  - 5141467887
-2023-08-31 11:18:19 | INFO | Enter amount. Message: 737271
-2023-08-31 11:18:24 | INFO | Request accepted from operator
-2023-08-31 11:18:48 | INFO | Enter rate. User: 5141467887. Message: ewf
-2023-08-31 11:18:51 | INFO | Enter timing. User: 5141467887. Message: 4ewfw
-2023-08-31 11:18:54 | INFO | Request canceled from client
-2023-08-31 11:19:09 | INFO | /start user  - 897892225
-2023-08-31 11:19:20 | INFO | Enter amount. Message: 636272
-2023-08-31 11:19:30 | INFO | Request accepted from operator
-2023-08-31 11:19:34 | INFO | Enter rate. User: 5141467887. Message: Hshsh
-2023-08-31 11:19:35 | INFO | Enter timing. User: 5141467887. Message: Jdjdhdhh
-2023-08-31 11:19:41 | INFO | Request accepted from client
-Time,Level,Message
-Time,Level,Message
-2023-08-31 11:23:05 | INFO | /start user  - 5141467887
-2023-08-31 11:23:12 | INFO | Enter amount. Message: 5262627
-2023-08-31 11:24:14 | INFO | Request canceled from operator
-2023-08-31 11:26:54 | INFO | /start user  - 5141467887
-2023-08-31 11:27:04 | INFO | Enter amount. Message: 4567
-Time,Level,Message
-2023-08-31 11:28:47 | INFO | /start user  - 897892225
-2023-08-31 11:28:56 | INFO | Enter amount. Message: 567
-Time,Level,Message
-2023-08-31 11:30:46 | INFO | /start user  - 897892225
-2023-08-31 11:30:54 | INFO | Enter amount. Message: 56778
-2023-08-31 11:31:23 | INFO | Request canceled from operator
-2023-08-31 11:31:25 | INFO | Request canceled from operator
-2023-08-31 11:31:27 | INFO | Request canceled from operator
-Time,Level,Message
-Time,Level,Message
-2023-08-31 11:35:58 | INFO | /start user  - 5141467887
-2023-08-31 11:36:07 | INFO | Enter amount. Message: 5567
+2023-08-31 11:46:48 | INFO | /start user  - 5141467887
+2023-08-31 11:46:52 | INFO | Next page
+2023-08-31 11:46:54 | INFO | Select city sending from
+2023-08-31 11:46:56 | INFO | Select sending currency
+2023-08-31 11:47:00 | INFO | Enter amount. Message: 123123
+2023-08-31 11:47:02 | INFO | Next page
+2023-08-31 11:47:03 | INFO | Next page
+2023-08-31 11:47:05 | INFO | Pressed custom button
+2023-08-31 11:47:07 | INFO | Enter sending to city - My city
+2023-08-31 11:47:10 | INFO | Select currency receiving
+2023-08-31 11:47:18 | INFO | Request canceled from operator
+2023-08-31 11:47:19 | INFO | Request already accepted from operator
+2023-08-31 11:48:04 | INFO | /start user  - 897892225
+2023-08-31 11:48:07 | INFO | Select city sending from
+2023-08-31 11:48:10 | INFO | Pressed custom button
+2023-08-31 11:48:13 | INFO | Enter sending currency - ZLT
+2023-08-31 11:48:15 | INFO | Enter no valid amount. Message: 123131wd
+2023-08-31 11:48:16 | INFO | Enter amount. Message: 123123
+2023-08-31 11:48:18 | INFO | Next page
+2023-08-31 11:48:20 | INFO | Next page
+2023-08-31 11:48:21 | INFO | Pressed custom button
+2023-08-31 11:48:22 | INFO | Enter sending to city - fwef
+2023-08-31 11:48:24 | INFO | Select currency receiving
+2023-08-31 11:48:31 | INFO | Request accepted from operator
+2023-08-31 11:48:32 | INFO | Request already accepted
+2023-08-31 11:48:37 | INFO | Enter rate. User: 1006565694. Message: Dgg
+2023-08-31 11:48:39 | INFO | Enter timing. User: 1006565694. Message: Fghhg
+2023-08-31 11:48:44 | INFO | Request canceled from client

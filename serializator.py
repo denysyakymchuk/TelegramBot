@@ -5,7 +5,7 @@ import config
 
 def ser(user):
     try:
-        return f"id: {user.id}\nUsername: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceving: {user.curr_get}"
+        return f"id: {user.id}\nUsername: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceiving: {user.curr_get}"
 
     except Exception as error:
         loguru.logger.critical(error)
@@ -13,7 +13,7 @@ def ser(user):
 
 def ser_admin(user):
     try:
-        return f"Username: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceving: {user.curr_get}"
+        return f"Username: {user.name_client}\nTelegram id: {user.telegram_id}\nSending from: {user.city_from}\nSending: {user.curr_set}\nAmount: {user.total}\nSending to: {user.city_to}\nReceiving: {user.curr_get}"
 
     except Exception as error:
         loguru.logger.critical(error)
