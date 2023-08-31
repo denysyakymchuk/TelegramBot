@@ -70,9 +70,11 @@ def search_city(data, selected_city):
 def get_operators_from_sheet(values):
     try:
         id_operators_values = []
-        for entry in values:
-            if len(entry) >= 2 and entry[0] == 'ID OPERATORS':
-                id_operators_values.extend(entry[1:])
+
+        for item in values:
+            if 'ID OPERATORS' in item:
+                id_operators_values = item[1].split(', ')
+                break
 
         return id_operators_values
 

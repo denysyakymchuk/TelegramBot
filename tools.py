@@ -20,10 +20,16 @@ async def send_message_to_operators(name_client):
                                                                   city_to=n['city_to'], curr_get=n['curr_get']
                                                                   )
         operators = serializator.get_operators_from_sheet(get_keyboard())
+        print(operators)
 
         for operator in operators:
-            await bot.send_message(operator, serializator.ser(actual_order),
-                                   reply_markup=get_inline_keyboard(actual_order))
+            print(operator)
+            try:
+                await bot.send_message(operator, serializator.ser(actual_order),
+                                       reply_markup=get_inline_keyboard(actual_order))
+            except:
+                loguru.logger.error(f"No send message to operator - {operator}")
+
     except Exception as error:
         loguru.logger.critical(error)
 
@@ -35,4 +41,4 @@ async def send_message_to_admins(message):
         try:
             await bot.send_message(admin, message)
         except:
-            loguru.logger.warning(f"No send message to admin {admin}")
+            loguru.logger.error(f"No send message to admin -  {admin}")

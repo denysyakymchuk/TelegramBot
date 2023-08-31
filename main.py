@@ -142,7 +142,6 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
 
-
             case 'client_accept_id':
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
