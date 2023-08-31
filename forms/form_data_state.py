@@ -48,7 +48,7 @@ async def get_option_currently_from(message: types.Message, state: FSMContext):
                 n['key_city'] = None
                 n['curr_set'] = message.text
                 await state.finish()
-                await message.reply("Напиши сумму:")
+                await message.reply("Enter the amount:")
                 loguru.logger.info(f'Enter sending currency - {message.text}')
                 await StateTotal.get_total.set()
 

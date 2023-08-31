@@ -40,3 +40,29 @@ async def send_message_to_admins(message):
             await bot.send_message(admin, message)
         except:
             loguru.logger.error(f"No send message to admin -  {admin}")
+
+
+def get_channel_name(data):
+    try:
+        channel_name = None
+
+        for line in data:
+            if line and line[0] == 'CHANELL NAME':
+                channel_name = line[1]
+
+        return channel_name
+    except Exception as error:
+        loguru.logger.error(error)
+
+
+def get_message(data):
+    try:
+        message_data = None
+        for item in data:
+            if len(item) == 2 and item[0] == 'MESSAGE':
+                message_data = item[1]
+                break
+
+        return message_data
+    except Exception as error:
+        loguru.logger.error(error)

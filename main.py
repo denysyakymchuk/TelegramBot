@@ -1,8 +1,7 @@
-import csv
-
 import loguru
 from aiogram import types
 from aiogram.dispatcher import FSMContext
+from aiogram.types import ContentType, Message, ChatType
 from aiogram.utils import executor
 
 import config
@@ -23,14 +22,34 @@ from logconfig import init_csv_logger
 logger.add("logs.csv", format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level="INFO")
 
 
+@dp.message_handler(content_types=[types.ContentType.NEW_CHAT_MEMBERS])
+async def new_member(message: types.Message):
+    try:
+        await bot.delete_message(message.chat.id, message.message_id)
+        await bot.send_message(message.new_chat_members[0]['id'], tools.get_message(get_keyboard()))
+    except Exception as error:
+        logger.error(error)
+
+
+async def is_user_subscribed(user_id):
+    try:
+        chat_member = await bot.get_chat_member(f'{tools.get_channel_name(get_keyboard(load=True))}', user_id)
+        return chat_member.is_chat_member()
+    except Exception as e:
+        logger.error(f"Error checking subscription: {e}")
+        return False
+
+
 @dp.message_handler(commands=['start'],  state=None)
 async def send_welcome(message: types.Message):
     try:
-        logger.info(f'/start user  - {message.chat.id}')
-        n['actual_question'] = 0
-        get_keyboard(load=True)
-        await Functions().send_city_from(message.chat.id)
-
+        if await is_user_subscribed(message.chat.id):
+            logger.info(f'/start user  - {message.chat.id}')
+            n['actual_question'] = 0
+            get_keyboard(load=True)
+            await Functions().send_city_from(message.chat.id)
+        else:
+            await message.reply(f"You can not use this bot!")
     except Exception as error:
         logger.critical(error)
 
@@ -97,19 +116,19 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
 
                 if int(cart[2]) == 0:
                     n['actual_question'] = 1
-                    await bot.send_message(callback_query.message.chat.id, "Напиши с какого города:")
+                    await bot.send_message(callback_query.message.chat.id, "Write from which city")
                     await GetFormDataState.get_option_city_from.set()
                 elif int(cart[2]) == 1:
                     n['actual_question'] = 2
-                    await bot.send_message(callback_query.message.chat.id, "Напиши в какой валюте:")
+                    await bot.send_message(callback_query.message.chat.id, "Write in which currency")
                     await GetFormDataState.get_option_currently_from.set()
                 elif int(cart[2]) == 2:
                     n['actual_question'] = 3
-                    await bot.send_message(callback_query.message.chat.id, "Напиши в какой город:")
+                    await bot.send_message(callback_query.message.chat.id, "Write in which city")
                     await GetFormDataState.get_option_city_to.set()
                 elif int(cart[2]) == 3:
                     n['actual_question'] = -1
-                    await bot.send_message(callback_query.message.chat.id, "Напиши в какой валюте:")
+                    await bot.send_message(callback_query.message.chat.id, "Write in which currency':")
                     await GetFormDataState.get_option_currently_to.set()
 
             case 'accept_id':
@@ -166,6 +185,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
 
     except Exception as error:
         logger.critical(error)
+
 
 
 if __name__ == '__main__':
