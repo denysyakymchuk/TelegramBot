@@ -1,9 +1,14 @@
-import loguru
+import asyncio
+import threading
+import time
+
 from aiogram import types
 from aiogram.dispatcher import FSMContext
-from aiogram.types import ContentType, Message, ChatType
 from aiogram.utils import executor
-
+from telethon import TelegramClient
+from telethon.tl.functions.channels import GetAdminLogRequest
+from telethon.tl.types import ChannelAdminLogEventsFilter
+import json
 import config
 import tools
 from forms.form_data_state import GetFormDataState
@@ -21,26 +26,73 @@ from logconfig import init_csv_logger
 
 logger.add("logs.csv", format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level="INFO")
 
+client = TelegramClient('session.session', config.api_id, config.api_hash)
 
-@dp.message_handler(content_types=[types.ContentType.NEW_CHAT_MEMBERS])
-async def new_member(message: types.Message):
+
+async def process_recent_actions():
     try:
-        await bot.delete_message(message.chat.id, message.message_id)
-        await bot.send_message(message.new_chat_members[0]['id'], tools.get_message(get_keyboard()))
+        input_channel = tools.get_channel_name(get_keyboard())
+        id = await client.get_entity(input_channel)
+        print(id)
+        n["id_channel"] = id.id
+        message = tools.get_message(get_keyboard())
+        events_filter = ChannelAdminLogEventsFilter(
+            join=True,
+        )
+        admin_log = await client(GetAdminLogRequest(
+            channel=input_channel,
+            q='',
+            max_id=0,
+            min_id=0,
+            limit=10,
+            events_filter=events_filter
+        ))
+        with open("users.json", 'r') as json_file:
+            data = json.load(json_file)
+
+        for id_user in admin_log.events:
+            if not any(id_user.id == entry.get("id") for entry in data):
+                print('NEW')
+                await client.send_message(id_user.user_id, message)
+                new_data = {
+                    "id": id_user.id,
+                    "user_id": id_user.user_id,
+                }
+                data.append(new_data)
+            else:
+                pass
+
+        with open("users.json", 'w') as json_file:
+            json_file.write(json.dumps(data, indent=4))
+
+    except Exception as e:
+        logger.critical(e)
+        time.sleep(600)
+
+
+async def run_client():
+    try:
+        await client.start(bot_token=config.TOKEN)
+        while True:
+            print("One iteration")
+            await process_recent_actions()
+            time.sleep(600)
+
     except Exception as error:
-        logger.error(error)
+        logger.critical(error)
 
 
 async def is_user_subscribed(user_id):
     try:
-        chat_member = await bot.get_chat_member(f'{tools.get_channel_name(get_keyboard(load=True))}', user_id)
+        print(n["id_channel"])
+        chat_member = await bot.get_chat_member(int('-100'+str(n["id_channel"])), user_id)
         return chat_member.is_chat_member()
     except Exception as e:
         logger.error(f"Error checking subscription: {e}")
         return False
 
 
-@dp.message_handler(commands=['start'],  state=None)
+@dp.message_handler(commands=['start'], state=None)
 async def send_welcome(message: types.Message):
     try:
         if await is_user_subscribed(message.chat.id):
@@ -50,6 +102,7 @@ async def send_welcome(message: types.Message):
             await Functions().send_city_from(message.chat.id)
         else:
             await message.reply(f"You can not use this bot!")
+
     except Exception as error:
         logger.critical(error)
 
@@ -68,7 +121,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                     n['city_from'] = cart[1]
                     logger.info('Select city sending from')
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
-                                                        message_id=callback_query.message.message_id)
+                                             message_id=callback_query.message.message_id)
                     n['actual_question'] = 1
                     await functions.send_currency(callback_query.message.chat.id, button_text)
                 elif n['actual_question'] == 1:
@@ -89,7 +142,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                     n['curr_get'] = cart[1]
                     logger.info('Select currency receiving')
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
-                                                        message_id=callback_query.message.message_id)
+                                             message_id=callback_query.message.message_id)
                     n['key_city'] = None
                     await tools.send_message_to_operators(callback_query.message.chat.first_name)
 
@@ -135,10 +188,8 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 async with state.proxy() as data:
                     data['id_order'] = cart[3]
 
-                ###
                 if database.crud.order.OrderClass().one_order(id=cart[3]).telegram_id_operator == None:
                     logger.info('Request accepted from operator')
-                    ###
                     await StateOperator.get_rate.set()
                     database.crud.order.OrderClass().update_order(id=cart[3],
                                                                   telegram_id_operator=callback_query.message.chat.id)
@@ -156,8 +207,10 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 if database.crud.order.OrderClass().one_order(id=cart[3]).telegram_id_operator is None:
                     database.crud.order.OrderClass().update_order(id=cart[3],
                                                                   telegram_id_operator=callback_query.message.chat.id)
-                    await callback_query.message.reply(f"Canceled: Username: {cart[1]}, Telegram id:{cart[2]}\nHe will informed!")
-                    await bot.send_message(cart[2], "Our apologies, but we are not able to fulfill your request at the moment!")
+                    await callback_query.message.reply(
+                        f"Canceled: Username: {cart[1]}, Telegram id:{cart[2]}\nHe will informed!")
+                    await bot.send_message(cart[2],
+                                           "Our apologies, but we are not able to fulfill your request at the moment!")
                     logger.info('Request canceled from operator')
                 else:
                     await bot.send_message(callback_query.message.chat.id, 'Заявка уже оброблена!')
@@ -171,14 +224,16 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 await bot.send_message(cart[2], "Your request has been accepted.")
                 order = database.crud.order.OrderClass().update_order(id=cart[1], is_accept_client=True)
                 await tools.send_message_to_admins(serializator.ser(order))
-                await bot.send_message(database.crud.order.OrderClass().one_order(id=cart[1]).telegram_id_operator, f"Клиент {cart[3]} согласился.")
+                await bot.send_message(database.crud.order.OrderClass().one_order(id=cart[1]).telegram_id_operator,
+                                       f"Клиент {cart[3]} согласился.")
                 logger.info('Request accepted from client')
 
             case 'client_cancel_id':
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
                 await bot.send_message(cart[2], "Okey!")
-                await bot.send_message(database.crud.order.OrderClass().one_order(id=cart[1]).telegram_id_operator, f"Клиент {cart[3]} отказался.")
+                await bot.send_message(database.crud.order.OrderClass().one_order(id=cart[1]).telegram_id_operator,
+                                       f"Клиент {cart[3]} отказался.")
                 logger.info('Request canceled from client')
             case _:
                 pass
@@ -187,7 +242,13 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
         logger.critical(error)
 
 
-
 if __name__ == '__main__':
-    init_csv_logger()
-    executor.start_polling(dp, skip_updates=True)
+    try:
+        print(get_keyboard(load=True))
+        init_csv_logger()
+        client_thread = threading.Thread(target=lambda: asyncio.run(run_client()))
+        client_thread.start()
+        executor.start_polling(dp, skip_updates=True)
+
+    except Exception as error:
+        logger.critical(error)

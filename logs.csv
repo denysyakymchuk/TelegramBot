@@ -1,0 +1,38 @@
+2023-09-03 03:18:43 | INFO | /start user  - 897892225
+2023-09-03 03:19:02 | INFO | Next page
+2023-09-03 03:19:07 | INFO | Next page
+2023-09-03 03:19:09 | INFO | Pressed custom button
+2023-09-03 03:19:14 | INFO | Enter sending from city - Lublin
+2023-09-03 03:19:17 | INFO | Pressed custom button
+2023-09-03 03:19:21 | INFO | Enter sending currency - UAH
+2023-09-03 03:19:24 | INFO | Enter amount. Message: 56556
+2023-09-03 03:19:26 | INFO | Next page
+2023-09-03 03:19:28 | INFO | Next page
+2023-09-03 03:19:30 | INFO | Preview page
+2023-09-03 03:19:32 | INFO | Select city sending to
+2023-09-03 03:19:34 | INFO | Select currency receiving
+2023-09-03 03:19:41 | INFO | Request accepted from operator
+2023-09-03 03:19:46 | INFO | Enter rate. User: 5141467887. Message: Курс
+2023-09-03 03:19:51 | INFO | Enter timing. User: 5141467887. Message: Инфа
+2023-09-03 03:20:12 | INFO | Request accepted from client
+2023-09-03 03:27:24 | INFO | /start user  - 5141467887
+2023-09-03 03:27:27 | INFO | Select city sending from
+2023-09-03 03:27:28 | INFO | Select sending currency
+2023-09-03 03:27:31 | INFO | Enter amount. Message: 4544
+2023-09-03 03:27:33 | INFO | Select city sending to
+2023-09-03 03:27:34 | INFO | Pressed custom button
+2023-09-03 03:27:37 | INFO | Enter receving currency - Zlt
+2023-09-03 03:27:40 | INFO | Request canceled from operator
+Time,Level,Message
+2023-09-03 14:52:07 | INFO | /start user  - 897892225
+2023-09-03 14:52:10 | INFO | Select city sending from
+2023-09-03 14:52:12 | INFO | Pressed custom button
+2023-09-03 14:52:15 | INFO | Enter sending currency - Zlt
+2023-09-03 14:52:17 | INFO | Enter amount. Message: 727281
+2023-09-03 14:52:18 | INFO | Select city sending to
+2023-09-03 14:52:20 | INFO | Pressed custom button
+2023-09-03 14:52:22 | INFO | Enter receving currency - Hdhjs
+2023-09-03 14:52:27 | INFO | Request accepted from operator
+2023-09-03 14:52:30 | INFO | Enter rate. User: 5141467887. Message: 636271
+2023-09-03 14:52:35 | INFO | Enter timing. User: 5141467887. Message: Zjsjjsjaja
+2023-09-03 14:52:41 | INFO | Request accepted from client

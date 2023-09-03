@@ -13,7 +13,9 @@ n = {
    'actual_question': 0,
    'key_city': None
 }
-
+api_id = '26785918'
+api_hash = 'd53e51145a15e59436e81f52639906fe'
+phone_number = '+48507635321'
 keyboards = api_sheet.main()
 
 
