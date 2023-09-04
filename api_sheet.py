@@ -50,9 +50,9 @@ def main():
 
         if not values:
             from logconfig import setup_logging
-            logger = setup_logging()
-            logger.error(f"No data found")
-            return []
+            loguru.logger.critical("No data found in google sheet")
+            return False
+        
         return values
     except HttpError as err:
         loguru.logger.critical(err)

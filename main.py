@@ -11,7 +11,6 @@ import serializator
 from database.crud.order import OrderClass
 from keyboard.inline_buttons_join import get_inline_join_client, get_inline_join_operator
 from keyboard.inline_form import send_paginated_buttons
-from strings import wait_answer, reply_client_req_join, from_city
 from forms.operator_state import StateOperator
 from config import dp, bot, n, get_keyboard
 from loguru import logger
@@ -24,23 +23,24 @@ logger.add("logs.csv", format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
 @dp.message_handler(commands=['start'], state=None)
 async def send_welcome(message: types.Message):
     try:
+        get_keyboard(load=True)
         if await tools.is_user_subscribed(message.chat.id):
             try:
                 if JoinClass().one_join(id_client=message.chat.id).is_instructed is False:
                     await bot.send_message(message.chat.id, tools.get_message(get_keyboard()))
                     JoinClass().delete_join(id_client=message.chat.id)
-            except: None
+                    logger.info("Instruction sent")
+            except: pass
 
             logger.info(f'/start user  - {message.chat.id}')
             n['actual_question'] = 0
-            get_keyboard(load=True)
             await Functions().send_city_from(message.chat.id)
         else:
             if not JoinClass().one_join(id_client=message.chat.id):
-                await message.reply(reply_client_req_join,
+                await message.reply(f"Hi, please confirm that you want to join.",
                                     reply_markup=get_inline_join_client(message.chat.id))
             else:
-                await bot.send_message(message.chat.id, wait_answer)
+                await bot.send_message(message.chat.id, "We've received your request, please wait for approval")
 
     except Exception as error:
         logger.critical(error)
@@ -93,6 +93,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                 await bot.edit_message_reply_markup(callback_query.message.chat.id, callback_query.message.message_id,
                                                     reply_markup=keyboard)
                 logger.info('Next page')
+
             case 'prev_page':
                 keyboard = send_paginated_buttons(page=int(callback_query.data.split(':')[1]),
                                                   number_cell=int(callback_query.data.split(':')[2]),
@@ -108,7 +109,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
 
                 if int(cart[2]) == 0:
                     n['actual_question'] = 1
-                    await bot.send_message(callback_query.message.chat.id, from_city)
+                    await bot.send_message(callback_query.message.chat.id, "Write from which city")
                     await GetFormDataState.get_option_city_from.set()
                 elif int(cart[2]) == 1:
                     n['actual_question'] = 2
@@ -126,7 +127,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
             case 'accept_id':
                 async with state.proxy() as data:
                     data['id_order'] = cart[-1]
-                print(cart)
+
                 if database.crud.order.OrderClass().one_order(id=cart[-1]).telegram_id_operator is None:
                     logger.info('Request accepted from operator')
                     await StateOperator.get_rate.set()
@@ -180,9 +181,9 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                     JoinClass().store_join(id_client=cart[1], is_instructed=False)
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
                                              message_id=callback_query.message.message_id)
-                    await bot.send_message(callback_query.message.chat.id, wait_answer)
+                    await bot.send_message(callback_query.message.chat.id, "We've received your request, please wait for approval")
                 else:
-                    await bot.send_message(callback_query.message.chat.id, wait_answer)
+                    await bot.send_message(callback_query.message.chat.id, "We've received your request, please wait for approval")
 
                 operators = serializator.get_operators_from_sheet(get_keyboard())
                 for operator in operators:
@@ -201,9 +202,9 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                                          message_id=callback_query.message.message_id)
                 link = await bot.create_chat_invite_link(member_limit=1, chat_id=tools.get_channel_name(get_keyboard()))
                 await bot.send_message(cart[1], f'Your request has been approved, please click on this link to join.'
+                                                f'\nLink: {link.invite_link}\n'
                                                 f'\n\nOnce you are part of our community, please come back here '
                                                 f'to so start using our tools.'
-                                                f'Link: {link.invite_link}\n'
                                                 f'\nMessage /start here to begin.')
 
             case 'join_cancel_operator':

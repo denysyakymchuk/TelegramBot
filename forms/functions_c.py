@@ -51,7 +51,7 @@ class Functions:
     async def send_city_from(self, message):
         try:
             keyboard = send_paginated_buttons(page=1, number_cell=0, button_list_domestic=self.buttons)
-            await bot.send_message(message, "Select from which city you want to send.", reply_markup=keyboard)
+            await bot.send_message(message, "Welcome.\nPlease select the city you want to send from.", reply_markup=keyboard)
 
         except Exception as error:
             logger.error(f"{error}")
