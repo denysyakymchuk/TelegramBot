@@ -1,38 +1,294 @@
-2023-09-03 03:18:43 | INFO | /start user  - 897892225
-2023-09-03 03:19:02 | INFO | Next page
-2023-09-03 03:19:07 | INFO | Next page
-2023-09-03 03:19:09 | INFO | Pressed custom button
-2023-09-03 03:19:14 | INFO | Enter sending from city - Lublin
-2023-09-03 03:19:17 | INFO | Pressed custom button
-2023-09-03 03:19:21 | INFO | Enter sending currency - UAH
-2023-09-03 03:19:24 | INFO | Enter amount. Message: 56556
-2023-09-03 03:19:26 | INFO | Next page
-2023-09-03 03:19:28 | INFO | Next page
-2023-09-03 03:19:30 | INFO | Preview page
-2023-09-03 03:19:32 | INFO | Select city sending to
-2023-09-03 03:19:34 | INFO | Select currency receiving
-2023-09-03 03:19:41 | INFO | Request accepted from operator
-2023-09-03 03:19:46 | INFO | Enter rate. User: 5141467887. Message: Курс
-2023-09-03 03:19:51 | INFO | Enter timing. User: 5141467887. Message: Инфа
-2023-09-03 03:20:12 | INFO | Request accepted from client
-2023-09-03 03:27:24 | INFO | /start user  - 5141467887
-2023-09-03 03:27:27 | INFO | Select city sending from
-2023-09-03 03:27:28 | INFO | Select sending currency
-2023-09-03 03:27:31 | INFO | Enter amount. Message: 4544
-2023-09-03 03:27:33 | INFO | Select city sending to
-2023-09-03 03:27:34 | INFO | Pressed custom button
-2023-09-03 03:27:37 | INFO | Enter receving currency - Zlt
-2023-09-03 03:27:40 | INFO | Request canceled from operator
 Time,Level,Message
-2023-09-03 14:52:07 | INFO | /start user  - 897892225
-2023-09-03 14:52:10 | INFO | Select city sending from
-2023-09-03 14:52:12 | INFO | Pressed custom button
-2023-09-03 14:52:15 | INFO | Enter sending currency - Zlt
-2023-09-03 14:52:17 | INFO | Enter amount. Message: 727281
-2023-09-03 14:52:18 | INFO | Select city sending to
-2023-09-03 14:52:20 | INFO | Pressed custom button
-2023-09-03 14:52:22 | INFO | Enter receving currency - Hdhjs
-2023-09-03 14:52:27 | INFO | Request accepted from operator
-2023-09-03 14:52:30 | INFO | Enter rate. User: 5141467887. Message: 636271
-2023-09-03 14:52:35 | INFO | Enter timing. User: 5141467887. Message: Zjsjjsjaja
-2023-09-03 14:52:41 | INFO | Request accepted from client
+2023-09-04 03:11:55 | ERROR | Error checking subscription: 'id_channel'
+Time,Level,Message
+2023-09-04 05:06:15 | ERROR | Error checking subscription: 'id_channel'
+2023-09-04 05:06:25 | CRITICAL | Chat not found
+Time,Level,Message
+2023-09-04 05:06:55 | CRITICAL | Chat not found
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+2023-09-04 05:15:14 | CRITICAL | Chat not found
+Time,Level,Message
+Time,Level,Message
+2023-09-04 07:05:56 | ERROR | Error checking subscription: 'id_channel'
+Time,Level,Message
+2023-09-04 07:06:50 | ERROR | Error checking subscription: 'id_channel'
+2023-09-04 07:12:38 | ERROR | Error checking subscription: 'id_channel'
+2023-09-04 07:12:50 | ERROR | Error checking subscription: 'id_channel'
+Time,Level,Message
+2023-09-04 07:13:33 | INFO | /start user  - 5141467887
+2023-09-04 07:13:39 | INFO | Next page
+2023-09-04 07:13:40 | INFO | Next page
+2023-09-04 07:13:41 | INFO | Preview page
+2023-09-04 07:13:43 | INFO | Select city sending from
+2023-09-04 07:13:47 | INFO | Select sending currency
+2023-09-04 07:13:51 | INFO | Enter no valid amount. Message: 3412312df
+2023-09-04 07:13:53 | INFO | Enter amount. Message: 34321312
+2023-09-04 07:13:55 | INFO | Next page
+2023-09-04 07:13:58 | INFO | Next page
+2023-09-04 07:14:10 | INFO | Pressed custom button
+2023-09-04 07:14:13 | INFO | No valid sending to city - eioawfoeaw3
+2023-09-04 07:14:14 | INFO | Enter sending to city - efafearf
+2023-09-04 07:14:16 | INFO | Select currency receiving
+2023-09-04 07:14:24 | INFO | Request accepted from operator
+2023-09-04 07:14:26 | INFO | Enter rate. User: 5141467887. Message: dfaw3efe
+2023-09-04 07:14:27 | INFO | Enter timing. User: 5141467887. Message: 3rwedfaw
+2023-09-04 07:14:33 | INFO | Request accepted from client
+Time,Level,Message
+2023-09-04 07:16:00 | ERROR | Error checking subscription: 'id_channel'
+2023-09-04 07:16:07 | ERROR | Error checking subscription: 'id_channel'
+Time,Level,Message
+2023-09-04 07:17:14 | ERROR | Error checking subscription: 'id_channel'
+Time,Level,Message
+2023-09-04 07:17:40 | CRITICAL | 'id_channel'
+Time,Level,Message
+2023-09-04 07:18:48 | CRITICAL | 'id_channel'
+Time,Level,Message
+2023-09-04 08:30:31 | ERROR | Error checking subscription: 'id_channel'
+Time,Level,Message
+Time,Level,Message
+2023-09-04 08:33:21 | CRITICAL | Aiohttp client throws an error: ClientConnectorError: Cannot connect to host api.telegram.org:443 ssl:default [Network is unreachable]
+Time,Level,Message
+Time,Level,Message
+2023-09-04 08:35:28 | INFO | /start user  - 897892225
+2023-09-04 08:37:04 | INFO | /start user  - 897892225
+Time,Level,Message
+2023-09-04 08:39:20 | INFO | /start user  - 897892225
+2023-09-04 08:39:28 | INFO | Select city sending from
+2023-09-04 08:39:29 | INFO | Select sending currency
+2023-09-04 08:39:33 | INFO | Enter no valid amount. Message: 2wef
+2023-09-04 08:39:34 | INFO | Enter amount. Message: 1242
+2023-09-04 08:39:35 | INFO | Select city sending to
+2023-09-04 08:39:37 | INFO | Select currency receiving
+2023-09-04 08:39:44 | INFO | Request accepted from operator
+2023-09-04 08:39:48 | INFO | Enter rate. User: 5141467887. Message: Курс
+2023-09-04 08:39:50 | INFO | Enter timing. User: 5141467887. Message: Сроки
+2023-09-04 08:39:54 | INFO | Request canceled from client
+2023-09-04 08:41:16 | INFO | /start user  - 6311508906
+2023-09-04 08:41:18 | INFO | Next page
+2023-09-04 08:41:20 | INFO | Select city sending from
+2023-09-04 08:41:21 | INFO | Select sending currency
+2023-09-04 08:41:25 | INFO | Enter amount. Message: 77382
+2023-09-04 08:41:26 | INFO | Select city sending to
+2023-09-04 08:41:28 | INFO | Select currency receiving
+2023-09-04 08:41:35 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:41:54 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:41:59 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:00 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:01 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:02 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:02 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:03 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:08 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:08 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:09 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:42:10 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+Time,Level,Message
+2023-09-04 08:43:11 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+2023-09-04 08:43:44 | CRITICAL | 'NoneType' object has no attribute 'telegram_id_operator'
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+2023-09-04 08:45:50 | INFO | Request accepted from operator
+2023-09-04 08:45:57 | INFO | Enter rate. User: 5141467887. Message: Курс
+2023-09-04 08:46:02 | INFO | Enter timing. User: 5141467887. Message: Хуюпм
+2023-09-04 08:46:02 | CRITICAL | 'NoneType' object has no attribute 'is_accept_op'
+Time,Level,Message
+2023-09-04 08:47:01 | INFO | /start user  - 897892225
+2023-09-04 08:47:03 | INFO | Select city sending from
+2023-09-04 08:47:05 | INFO | Select sending currency
+2023-09-04 08:47:09 | INFO | Enter amount. Message: 6665
+2023-09-04 08:47:11 | INFO | Select city sending to
+2023-09-04 08:47:12 | INFO | Select currency receiving
+2023-09-04 08:47:17 | INFO | Request accepted from operator
+2023-09-04 08:47:21 | INFO | Enter rate. User: 5141467887. Message: Курс
+2023-09-04 08:47:38 | INFO | Enter timing. User: 5141467887. Message: Ррр
+2023-09-04 08:47:43 | INFO | Request accepted from client
+Time,Level,Message
+2023-09-04 08:52:09 | CRITICAL | Aiohttp client throws an error: ClientConnectorError: Cannot connect to host api.telegram.org:443 ssl:default [Network is unreachable]
+Time,Level,Message
+2023-09-04 08:52:36 | INFO | /start user  - 897892225
+2023-09-04 08:52:41 | INFO | Select city sending from
+2023-09-04 08:52:43 | INFO | Select sending currency
+2023-09-04 08:52:46 | INFO | Enter amount. Message: 789
+2023-09-04 08:52:47 | INFO | Select city sending to
+2023-09-04 08:52:49 | INFO | Select currency receiving
+2023-09-04 08:52:55 | INFO | Request accepted from operator
+2023-09-04 08:52:58 | INFO | Enter rate. User: 5141467887. Message: Поор
+2023-09-04 08:52:59 | INFO | Enter timing. User: 5141467887. Message: Тренг
+2023-09-04 08:53:04 | INFO | Request accepted from client
+2023-09-04 08:53:18 | INFO | /start user  - 6311508906
+2023-09-04 08:53:22 | INFO | Select city sending from
+2023-09-04 08:53:23 | INFO | Select sending currency
+2023-09-04 08:53:26 | INFO | Enter amount. Message: 737272
+2023-09-04 08:53:28 | INFO | Select city sending to
+2023-09-04 08:53:29 | INFO | Select currency receiving
+2023-09-04 08:53:33 | INFO | Request accepted from operator
+2023-09-04 08:53:39 | INFO | Enter rate. User: 5141467887. Message: Уурс
+2023-09-04 08:53:40 | INFO | Enter timing. User: 5141467887. Message: Аовоо
+2023-09-04 08:53:40 | CRITICAL | 'NoneType' object has no attribute 'is_accept_op'
+Time,Level,Message
+2023-09-04 08:57:52 | CRITICAL | Aiohttp client throws an error: ClientConnectorError: Cannot connect to host api.telegram.org:443 ssl:default [Network is unreachable]
+Time,Level,Message
+2023-09-04 08:58:16 | INFO | /start user  - 5141467887
+2023-09-04 08:58:18 | INFO | Select city sending from
+2023-09-04 08:58:20 | INFO | Select sending currency
+2023-09-04 08:58:22 | INFO | Enter amount. Message: 72728
+2023-09-04 08:58:24 | INFO | Select city sending to
+2023-09-04 08:58:26 | INFO | Pressed custom button
+2023-09-04 08:58:27 | INFO | Enter receving currency - Zlt
+2023-09-04 08:58:34 | INFO | Request accepted from operator
+2023-09-04 08:58:36 | INFO | Enter rate. User: 5141467887. Message: Hshs
+2023-09-04 08:58:37 | INFO | Enter timing. User: 5141467887. Message: Djehjejw
+2023-09-04 08:58:40 | INFO | Request accepted from client
+2023-09-04 08:58:46 | INFO | /start user  - 6311508906
+2023-09-04 08:58:49 | INFO | Select city sending from
+2023-09-04 08:58:51 | INFO | Select sending currency
+2023-09-04 08:58:53 | INFO | Enter no valid amount. Message: Uwywyw
+2023-09-04 08:58:54 | INFO | Enter amount. Message: 7372728
+2023-09-04 08:58:56 | INFO | Select city sending to
+2023-09-04 08:58:58 | INFO | Select currency receiving
+2023-09-04 08:59:02 | INFO | Request accepted from operator
+2023-09-04 08:59:06 | INFO | Enter rate. User: 5141467887. Message: Hshshw
+2023-09-04 08:59:07 | INFO | Enter timing. User: 5141467887. Message: Dhgshsbs
+2023-09-04 08:59:11 | INFO | Request accepted from client
+2023-09-04 08:59:57 | INFO | /start user  - 897892225
+2023-09-04 09:00:00 | INFO | Next page
+2023-09-04 09:00:01 | INFO | Next page
+2023-09-04 09:00:02 | INFO | Select city sending from
+2023-09-04 09:00:04 | INFO | Select sending currency
+2023-09-04 09:00:07 | INFO | Enter amount. Message: 637272
+2023-09-04 09:00:09 | INFO | Select city sending to
+2023-09-04 09:00:11 | INFO | Pressed custom button
+2023-09-04 09:00:13 | INFO | Enter receving currency - Zlt
+2023-09-04 09:00:19 | INFO | Request accepted from operator
+2023-09-04 09:00:32 | INFO | Enter rate. User: 5141467887. Message: сейчас курс 2.06578
+2023-09-04 09:00:35 | INFO | Enter timing. User: 5141467887. Message: Лол
+2023-09-04 09:00:39 | INFO | Request accepted from client
+2023-09-04 09:01:17 | INFO | /start user  - 6311508906
+2023-09-04 09:01:23 | INFO | Next page
+2023-09-04 09:01:25 | INFO | Select city sending from
+2023-09-04 09:01:27 | INFO | Pressed custom button
+2023-09-04 09:01:32 | INFO | Enter sending currency - Сur
+2023-09-04 09:01:34 | INFO | Enter amount. Message: 627272
+2023-09-04 09:01:36 | INFO | Next page
+2023-09-04 09:01:38 | INFO | Next page
+2023-09-04 09:01:39 | INFO | Select city sending to
+2023-09-04 09:01:41 | INFO | Select currency receiving
+2023-09-04 09:01:46 | INFO | Request canceled from operator
+2023-09-04 09:01:52 | INFO | /start user  - 6311508906
+2023-09-04 09:01:54 | INFO | Select city sending from
+2023-09-04 09:01:56 | INFO | Select sending currency
+2023-09-04 09:01:58 | INFO | Enter amount. Message: 727281
+2023-09-04 09:02:00 | INFO | Select city sending to
+2023-09-04 09:02:01 | INFO | Select currency receiving
+2023-09-04 09:02:05 | INFO | Request accepted from operator
+2023-09-04 09:02:08 | INFO | Enter rate. User: 5141467887. Message: Hehehe
+2023-09-04 09:02:09 | INFO | Enter timing. User: 5141467887. Message: Dhhsjsjs
+2023-09-04 09:02:14 | INFO | Request canceled from client
+2023-09-04 09:02:46 | INFO | /start user  - 5141467887
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+2023-09-04 09:52:08 | CRITICAL | Class 'builtins.NoneType' is not mapped
+2023-09-04 09:52:09 | CRITICAL | Class 'builtins.NoneType' is not mapped
+2023-09-04 09:52:09 | CRITICAL | Class 'builtins.NoneType' is not mapped
+Time,Level,Message
+2023-09-04 09:54:17 | CRITICAL | Message to delete not found
+2023-09-04 09:54:18 | CRITICAL | Message to delete not found
+2023-09-04 09:54:19 | CRITICAL | Message to delete not found
+2023-09-04 09:59:58 | INFO | /start user  - 897892225
+Time,Level,Message
+Time,Level,Message
+2023-09-04 10:15:41 | CRITICAL | 'NoneType' object has no attribute 'is_instructed'
+Time,Level,Message
+2023-09-04 10:17:06 | INFO | Select city sending from
+Time,Level,Message
+Time,Level,Message
+2023-09-04 10:21:39 | INFO | /start user  - 897892225
+2023-09-04 10:21:46 | INFO | /start user  - 897892225
+2023-09-04 10:22:49 | CRITICAL | JoinClass.store_join() missing 1 required positional argument: 'is_instructed'
+Time,Level,Message
+2023-09-04 10:24:36 | INFO | /start user  - 5141467887
+2023-09-04 10:25:17 | INFO | /start user  - 897892225
+Time,Level,Message
+2023-09-04 10:25:56 | INFO | /start user  - 897892225
+Time,Level,Message
+2023-09-04 10:26:11 | INFO | /start user  - 897892225
+Time,Level,Message
+2023-09-04 10:28:00 | INFO | /start user  - 897892225
+2023-09-04 10:28:39 | INFO | /start user  - 897892225
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+2023-09-04 10:38:55 | CRITICAL | 'NoneType' object has no attribute 'is_instructed'
+2023-09-04 10:38:59 | CRITICAL | 'NoneType' object has no attribute 'is_instructed'
+Time,Level,Message
+2023-09-04 10:39:30 | INFO | /start user  - 5141467887
+2023-09-04 10:40:20 | CRITICAL | (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO joins (id_client, is_instructed) VALUES (?, ?)]
+[parameters: ('6311508906', 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-09-04 10:40:37 | CRITICAL | This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO joins (id_client, is_instructed) VALUES (?, ?)]
+[parameters: ('6311508906', 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8) (Background on this error at: https://sqlalche.me/e/20/7s2a)
+Time,Level,Message
+2023-09-04 10:41:07 | INFO | /start user  - 6311508906
+2023-09-04 10:43:58 | INFO | /start user  - 6311508906
+Time,Level,Message
+Time,Level,Message
+2023-09-04 10:51:49 | INFO | /start user  - 897892225
+Time,Level,Message
+2023-09-04 11:11:48 | INFO | /start user  - 5141467887
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+2023-09-04 19:27:38 | INFO | /start user  - 5141467887
+2023-09-04 19:27:42 | INFO | Next page
+2023-09-04 19:27:44 | INFO | Next page
+2023-09-04 19:27:49 | INFO | Select city sending from
+2023-09-04 19:27:52 | INFO | Pressed custom button
+2023-09-04 19:27:56 | INFO | Enter sending currency - Uah
+2023-09-04 19:27:59 | INFO | Enter amount. Message: 63728
+2023-09-04 19:28:07 | INFO | Next page
+2023-09-04 19:28:08 | INFO | Select city sending to
+2023-09-04 19:28:12 | INFO | Select currency receiving
+2023-09-04 19:28:17 | INFO | Request accepted from operator
+2023-09-04 19:28:20 | INFO | Enter rate. User: 5141467887. Message: Hdhe
+2023-09-04 19:28:21 | INFO | Enter timing. User: 5141467887. Message: Duejjsns
+2023-09-04 19:28:24 | INFO | Request accepted from client
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+2023-09-04 19:41:18 | INFO | /start user  - 897892225
+2023-09-04 19:41:25 | INFO | Next page
+2023-09-04 19:41:26 | INFO | Select city sending from
+2023-09-04 19:41:28 | INFO | Select sending currency
+2023-09-04 19:41:30 | INFO | Enter amount. Message: 63727
+2023-09-04 19:41:32 | INFO | Next page
+2023-09-04 19:41:33 | INFO | Select city sending to
+2023-09-04 19:41:34 | INFO | Select currency receiving
+2023-09-04 19:41:39 | INFO | Request accepted from operator
+2023-09-04 19:41:42 | INFO | Enter rate. User: 5141467887. Message: Hshshs
+2023-09-04 19:41:43 | INFO | Enter timing. User: 5141467887. Message: Dhhshshxx
+2023-09-04 19:41:48 | INFO | Request accepted from client
+Time,Level,Message
+2023-09-04 19:47:28 | INFO | /start user  - 897892225
+2023-09-04 19:54:09 | INFO | /start user  - 897892225
+2023-09-04 19:55:34 | INFO | /start user  - 897892225
+2023-09-04 19:55:38 | INFO | /start user  - 897892225
+2023-09-04 19:56:27 | INFO | /start user  - 897892225
+2023-09-04 19:57:50 | INFO | /start user  - 897892225
+2023-09-04 19:59:17 | INFO | /start user  - 897892225
+2023-09-04 19:59:33 | INFO | /start user  - 897892225
+2023-09-04 20:00:45 | INFO | /start user  - 5141467887
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message

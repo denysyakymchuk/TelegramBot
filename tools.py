@@ -66,3 +66,12 @@ def get_message(data):
         return message_data
     except Exception as error:
         loguru.logger.error(error)
+
+
+async def is_user_subscribed(user_id):
+    try:
+        chat_member = await bot.get_chat_member(get_channel_name(get_keyboard()), user_id)
+        return chat_member.is_chat_member()
+    except Exception as e:
+        loguru.logger.error(f"Error checking subscription: {e}")
+        return False

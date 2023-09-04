@@ -53,4 +53,26 @@ class Order(Base):
         return json.dumps(data)
 
 
+class Join(Base):
+    __tablename__ = 'joins'
+
+    id = Column(Integer, primary_key=True)
+    id_client = Column(Integer)
+    is_instructed = Column(Boolean, default=False)
+
+    def __repr__(self):
+        data = {"id": self.id,
+                "id_client": self.name_client,
+                "is_instructed": self.is_instructed,
+                }
+        return json.dumps(data)
+
+    def __str__(self):
+        data = {"id": self.id,
+                "id_client": self.name_client,
+                "is_instructed": self.is_instructed,
+                }
+        return json.dumps(data)
+
+
 Base.metadata.create_all(engine)
