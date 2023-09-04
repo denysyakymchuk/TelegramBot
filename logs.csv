@@ -463,3 +463,223 @@ Time,Level,Message
 2023-09-05 00:01:41 | INFO | Enter rate. User: 5141467887. Message: Еарн
 2023-09-05 00:01:42 | INFO | Enter timing. User: 5141467887. Message: Пву
 2023-09-05 00:01:51 | INFO | Request canceled from client
+Time,Level,Message
+2023-09-05 00:28:38 | INFO | /start user  - 897892225
+2023-09-05 00:28:40 | INFO | Next page
+2023-09-05 00:28:41 | INFO | Next page
+2023-09-05 00:28:43 | INFO | Select city sending from
+2023-09-05 00:28:43 | CRITICAL | list index out of range
+2023-09-05 00:28:45 | INFO | Pressed custom button
+2023-09-05 00:28:47 | INFO | Enter sending currency - uah
+2023-09-05 00:28:49 | INFO | Enter amount. Message: 121
+2023-09-05 00:28:51 | INFO | Select city sending to
+2023-09-05 00:28:51 | CRITICAL | list index out of range
+2023-09-05 00:28:52 | INFO | Select currency receiving
+2023-09-05 00:28:58 | INFO | Request accepted from operator
+2023-09-05 00:29:03 | INFO | Enter rate. User: 5141467887. Message: 3.242
+2023-09-05 00:29:05 | INFO | Enter timing. User: 5141467887. Message: wefwef
+2023-09-05 00:29:09 | INFO | Request accepted from client
+2023-09-05 00:30:13 | INFO | /start user  - 897892225
+2023-09-05 00:30:15 | INFO | Next page
+2023-09-05 00:30:16 | INFO | Next page
+2023-09-05 00:30:18 | INFO | Preview page
+2023-09-05 00:30:20 | INFO | Preview page
+2023-09-05 00:30:21 | INFO | Select city sending from
+2023-09-05 00:30:21 | CRITICAL | list index out of range
+2023-09-05 00:30:24 | INFO | Select sending currency
+2023-09-05 00:30:27 | INFO | Enter amount. Message: 211
+2023-09-05 00:30:29 | INFO | Select city sending to
+2023-09-05 00:30:29 | CRITICAL | list index out of range
+2023-09-05 00:30:30 | INFO | Select currency receiving
+2023-09-05 00:30:43 | INFO | Request canceled from operator
+2023-09-05 00:30:48 | INFO | /start user  - 897892225
+2023-09-05 00:30:50 | INFO | Next page
+2023-09-05 00:30:51 | INFO | Next page
+2023-09-05 00:30:53 | INFO | Select city sending from
+2023-09-05 00:30:53 | CRITICAL | list index out of range
+2023-09-05 00:30:55 | INFO | Select sending currency
+2023-09-05 00:30:59 | INFO | Enter amount. Message: 0090
+2023-09-05 00:31:01 | INFO | Select city sending to
+2023-09-05 00:31:01 | CRITICAL | list index out of range
+2023-09-05 00:31:03 | INFO | Select currency receiving
+2023-09-05 00:31:07 | INFO | Request accepted from operator
+2023-09-05 00:31:10 | INFO | Enter rate. User: 5141467887. Message: Паа
+2023-09-05 00:31:11 | INFO | Enter timing. User: 5141467887. Message: Опкп
+2023-09-05 00:31:20 | INFO | Request accepted from client
+2023-09-05 00:31:48 | INFO | /start user  - 897892225
+2023-09-05 00:31:50 | INFO | Next page
+2023-09-05 00:31:51 | INFO | Next page
+2023-09-05 00:31:53 | INFO | Select city sending from
+2023-09-05 00:31:53 | CRITICAL | list index out of range
+2023-09-05 00:32:00 | INFO | Select sending currency
+2023-09-05 00:32:04 | INFO | Enter amount. Message: 1123123124123
+2023-09-05 00:32:07 | INFO | Select city sending to
+2023-09-05 00:32:07 | CRITICAL | list index out of range
+2023-09-05 00:32:08 | INFO | Select currency receiving
+2023-09-05 00:32:11 | INFO | Request accepted from operator
+2023-09-05 00:32:13 | INFO | Enter rate. User: 5141467887. Message: Лре
+2023-09-05 00:32:15 | INFO | Enter timing. User: 5141467887. Message: Рпро
+2023-09-05 00:32:18 | INFO | Request accepted from client
+2023-09-05 00:33:04 | INFO | /start user  - 897892225
+2023-09-05 00:33:05 | INFO | Next page
+2023-09-05 00:33:06 | INFO | Next page
+2023-09-05 00:33:12 | INFO | Select city sending from
+2023-09-05 00:33:12 | CRITICAL | list index out of range
+2023-09-05 00:33:28 | INFO | Select sending currency
+2023-09-05 00:33:32 | INFO | Enter amount. Message: 21
+2023-09-05 00:33:35 | INFO | Next page
+2023-09-05 00:33:37 | INFO | Next page
+2023-09-05 00:33:40 | INFO | Select city sending to
+2023-09-05 00:33:40 | CRITICAL | list index out of range
+2023-09-05 00:33:45 | INFO | Select currency receiving
+2023-09-05 00:33:48 | INFO | Request canceled from operator
+2023-09-05 00:35:50 | INFO | /start user  - 897892225
+2023-09-05 00:36:56 | INFO | Next page
+2023-09-05 00:36:56 | CRITICAL | Message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2023-09-05 00:37:00 | INFO | Next page
+2023-09-05 00:37:03 | INFO | Select city sending from
+2023-09-05 00:37:03 | CRITICAL | list index out of range
+2023-09-05 00:37:33 | INFO | Select sending currency
+2023-09-05 00:37:37 | INFO | Enter amount. Message: 31
+2023-09-05 00:37:39 | INFO | Select city sending to
+2023-09-05 00:37:39 | CRITICAL | list index out of range
+2023-09-05 00:37:41 | INFO | Select currency receiving
+Time,Level,Message
+2023-09-05 00:38:07 | INFO | Request canceled from operator
+2023-09-05 00:38:13 | INFO | /start user  - 897892225
+2023-09-05 00:38:15 | INFO | Next page
+2023-09-05 00:38:16 | INFO | Next page
+2023-09-05 00:38:19 | INFO | Select city sending from
+2023-09-05 00:38:19 | ERROR | list index out of range
+2023-09-05 00:38:30 | INFO | Select sending currency
+2023-09-05 00:38:36 | INFO | Enter amount. Message: 3123
+2023-09-05 00:38:39 | INFO | Select city sending to
+2023-09-05 00:38:39 | ERROR | list index out of range
+2023-09-05 00:38:47 | INFO | Select currency receiving
+2023-09-05 00:38:50 | INFO | Request canceled from operator
+Time,Level,Message
+2023-09-05 00:40:23 | INFO | /start user  - 897892225
+2023-09-05 00:40:29 | INFO | Next page
+2023-09-05 00:40:31 | INFO | Next page
+2023-09-05 00:40:32 | INFO | Select city sending from
+2023-09-05 00:40:32 | ERROR | list index out of range
+2023-09-05 00:42:26 | INFO | /start user  - 897892225
+2023-09-05 00:42:28 | INFO | Next page
+2023-09-05 00:42:29 | INFO | Next page
+2023-09-05 00:42:32 | INFO | Preview page
+2023-09-05 00:42:44 | INFO | Preview page
+2023-09-05 00:42:46 | INFO | Select city sending from
+2023-09-05 00:42:47 | ERROR | list index out of range
+2023-09-05 00:43:08 | INFO | Select sending currency
+2023-09-05 00:44:14 | INFO | Enter amount. Message: 123
+2023-09-05 00:44:18 | INFO | Select city sending to
+2023-09-05 00:44:18 | ERROR | list index out of range
+2023-09-05 00:44:23 | INFO | Select currency receiving
+Time,Level,Message
+2023-09-05 00:45:15 | INFO | /start user  - 897892225
+Time,Level,Message
+2023-09-05 00:45:35 | INFO | Select city sending from
+2023-09-05 00:45:35 | CRITICAL | list index out of range
+Time,Level,Message
+2023-09-05 00:46:10 | INFO | Request canceled from operator
+2023-09-05 00:46:17 | INFO | /start user  - 897892225
+2023-09-05 00:46:24 | INFO | Select city sending from
+2023-09-05 00:46:24 | CRITICAL | list index out of range
+2023-09-05 00:46:51 | INFO | Select sending currency
+2023-09-05 00:46:54 | INFO | Enter amount. Message: 2313
+2023-09-05 00:46:56 | INFO | Next page
+2023-09-05 00:46:58 | INFO | Select city sending to
+2023-09-05 00:46:58 | CRITICAL | list index out of range
+Time,Level,Message
+2023-09-05 00:47:42 | INFO | /start user  - 897892225
+Time,Level,Message
+2023-09-05 00:48:48 | INFO | Select city sending from
+2023-09-05 00:48:48 | CRITICAL | list index out of range
+2023-09-05 00:48:53 | INFO | Pressed custom button
+Time,Level,Message
+Time,Level,Message
+2023-09-05 00:49:53 | INFO | /start user  - 897892225
+2023-09-05 00:49:58 | INFO | Next page
+2023-09-05 00:50:00 | INFO | Select city sending from
+2023-09-05 00:50:00 | ERROR | list index out of range
+Time,Level,Message
+Time,Level,Message
+2023-09-05 00:50:46 | INFO | /start user  - 897892225
+2023-09-05 00:50:49 | INFO | Next page
+2023-09-05 00:50:51 | INFO | Select city sending from
+2023-09-05 00:50:51 | CRITICAL | list index out of range
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+2023-09-05 00:52:02 | INFO | /start user  - 897892225
+2023-09-05 00:52:05 | INFO | Next page
+2023-09-05 00:52:07 | INFO | Select city sending from
+Time,Level,Message
+2023-09-05 00:52:49 | INFO | /start user  - 897892225
+2023-09-05 00:52:52 | INFO | Select city sending from
+Time,Level,Message
+2023-09-05 00:53:34 | INFO | /start user  - 897892225
+Time,Level,Message
+Time,Level,Message
+2023-09-05 00:55:01 | INFO | Select city sending from
+Time,Level,Message
+2023-09-05 00:55:56 | INFO | /start user  - 897892225
+2023-09-05 00:56:00 | INFO | Select city sending from
+Time,Level,Message
+2023-09-05 00:58:11 | INFO | /start user  - 897892225
+Time,Level,Message
+2023-09-05 00:58:55 | INFO | Select city sending from
+2023-09-05 01:01:22 | INFO | Select sending currency
+2023-09-05 01:01:25 | INFO | Enter amount. Message: 312
+2023-09-05 01:01:29 | INFO | Next page
+2023-09-05 01:01:31 | INFO | Select city sending to
+2023-09-05 01:01:35 | INFO | Select currency receiving
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+Time,Level,Message
+2023-09-05 01:15:13 | INFO | /start user  - 897892225
+2023-09-05 01:15:17 | INFO | Press next page
+2023-09-05 01:15:18 | INFO | Press next page
+2023-09-05 01:15:20 | INFO | Pressed custom button
+2023-09-05 01:15:24 | INFO | Enter sending from city - /start
+2023-09-05 01:15:31 | INFO | Selected currency for sending
+2023-09-05 01:15:34 | INFO | Enter amount. Message: 566
+2023-09-05 01:15:35 | INFO | Press next page
+2023-09-05 01:15:37 | INFO | Press next page
+2023-09-05 01:15:38 | INFO | Press preview page
+2023-09-05 01:15:40 | INFO | Select city send to
+2023-09-05 01:15:42 | INFO | Select currency receiving
+2023-09-05 01:15:50 | INFO | Request canceled from operator
+2023-09-05 01:15:52 | INFO | Request canceled from operator
+2023-09-05 01:16:06 | INFO | /start user  - 897892225
+2023-09-05 01:16:08 | INFO | Press next page
+2023-09-05 01:16:09 | INFO | Press next page
+2023-09-05 01:16:11 | INFO | Press preview page
+2023-09-05 01:16:12 | INFO | Press next page
+2023-09-05 01:16:14 | INFO | Press preview page
+2023-09-05 01:16:15 | INFO | Press next page
+2023-09-05 01:16:16 | INFO | Press preview page
+2023-09-05 01:16:19 | INFO | Selected city send from
+2023-09-05 01:16:32 | INFO | Selected currency for sending
+2023-09-05 01:16:35 | INFO | Enter amount. Message: 3567
+2023-09-05 01:16:37 | INFO | Press next page
+2023-09-05 01:16:38 | INFO | Press preview page
+2023-09-05 01:16:40 | INFO | Select city send to
+2023-09-05 01:16:42 | INFO | Select currency receiving
+2023-09-05 01:16:47 | INFO | Request accepted from operator
+2023-09-05 01:16:49 | INFO | Enter rate. User: 5141467887. Message: 567
+2023-09-05 01:16:53 | INFO | Enter timing. User: 5141467887. Message: _-+
+2023-09-05 01:16:59 | INFO | Request canceled from client
+2023-09-05 01:17:37 | INFO | Press cancel join
+2023-09-05 01:17:45 | INFO | Press accept join
+2023-09-05 01:17:50 | INFO | Operator press accept join
+2023-09-05 01:18:09 | INFO | Instruction sent
+2023-09-05 01:18:09 | INFO | /start user  - 897892225
+2023-09-05 01:18:19 | INFO | Press next page
+2023-09-05 01:18:20 | INFO | Selected city send from
+2023-09-05 01:18:21 | INFO | Selected currency for sending
+2023-09-05 01:18:25 | INFO | Enter amount. Message: 567
+2023-09-05 01:18:27 | INFO | Select city send to
+2023-09-05 01:18:28 | INFO | Select currency receiving
+2023-09-05 01:18:32 | INFO | Request canceled from operator

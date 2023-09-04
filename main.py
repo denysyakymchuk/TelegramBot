@@ -58,14 +58,14 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
 
                 if n['actual_question'] == 0:
                     n['city_from'] = cart[1]
-                    logger.info('Select city sending from')
+                    logger.info('Selected city send from')
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
                                              message_id=callback_query.message.message_id)
                     n['actual_question'] = 1
                     await functions.send_currency(callback_query.message.chat.id, button_text)
                 elif n['actual_question'] == 1:
                     n['curr_set'] = cart[1]
-                    logger.info('Select sending currency')
+                    logger.info('Selected currency for sending')
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
                                              message_id=callback_query.message.message_id)
                     n['actual_question'] = 2
@@ -74,7 +74,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                     n['city_to'] = cart[1]
                     await bot.delete_message(chat_id=callback_query.message.chat.id,
                                              message_id=callback_query.message.message_id)
-                    logger.info('Select city sending to')
+                    logger.info('Select city send to')
                     n['actual_question'] = -1
                     await functions.send_currency_to(callback_query.message.chat.id, button_text)
                 elif n['actual_question'] == -1:
@@ -92,7 +92,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
 
                 await bot.edit_message_reply_markup(callback_query.message.chat.id, callback_query.message.message_id,
                                                     reply_markup=keyboard)
-                logger.info('Next page')
+                logger.info('Press next page')
 
             case 'prev_page':
                 keyboard = send_paginated_buttons(page=int(callback_query.data.split(':')[1]),
@@ -100,7 +100,7 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                                                   button_list_domestic=get_keyboard(), is_city=n['key_city'])
                 await bot.edit_message_reply_markup(callback_query.message.chat.id, callback_query.message.message_id,
                                                     reply_markup=keyboard)
-                logger.info('Preview page')
+                logger.info('Press preview page')
 
             case 'add_option':
                 logger.info('Pressed custom button')
@@ -191,11 +191,13 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                                                      f'\nLast name: {callback_query.message.chat.last_name}'
                                                      f'\nUsername: {callback_query.message.chat.username}',
                                            reply_markup=get_inline_join_operator(cart[1]))
+                logger.info('Press accept join')
 
             case 'join_cancel':
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
                 await bot.send_message(callback_query.message.chat.id, 'Okey', reply_markup=None)
+                logger.info('Press cancel join')
 
             case 'join_accept_operator':
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
@@ -206,11 +208,13 @@ async def on_inline_button(callback_query: types.CallbackQuery, state: FSMContex
                                                 f'\n\nOnce you are part of our community, please come back here '
                                                 f'to so start using our tools.'
                                                 f'\nMessage /start here to begin.')
+                logger.info('Operator press accept join')
 
             case 'join_cancel_operator':
                 await bot.delete_message(chat_id=callback_query.message.chat.id,
                                          message_id=callback_query.message.message_id)
                 JoinClass().delete_join(id_client=cart[1])
+                logger.info('Operator press cancel join')
             case _:
                 pass
 
@@ -226,7 +230,6 @@ async def handle_get_channel_id_command(message: types.Message):
 
 if __name__ == '__main__':
     try:
-        print(get_keyboard(load=True))
         init_csv_logger()
         executor.start_polling(dp, skip_updates=True)
 

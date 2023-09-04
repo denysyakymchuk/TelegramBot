@@ -46,15 +46,12 @@ def search_city(data, selected_city):
                 break
 
         if dependencies_index is not None:
-            # Розділимо рядок "Зависимості" на список міст і їх залежності
             dependencies = data[dependencies_index][1:]
             dependencies_dict = {}
             for dependency in dependencies:
                 city, dependencies_info = dependency.split(': ')
                 dependencies_dict[city] = dependencies_info.split(', ')
 
-            # Ваш аргумент, наприклад "Майами"
-            # Отримаємо залежності для вибраного міста
             if selected_city in dependencies_dict:
                 selected_dependencies = dependencies_dict[selected_city]
                 return selected_dependencies
@@ -72,7 +69,7 @@ def get_operators_from_sheet(values):
         id_operators_values = []
 
         for item in values:
-            if 'ID OPERATORS' in item:
+            if 'Id operators' in item:
                 id_operators_values = item[1].split(', ')
                 break
 
@@ -87,7 +84,7 @@ def get_admins_from_sheet():
         id_admins = None
 
         for item in config.get_keyboard():
-            if len(item) > 1 and item[0] == 'ID ADMINS':
+            if len(item) > 1 and item[0] == 'Id admins':
                 id_admins = item[1]
                 break
 

@@ -47,7 +47,7 @@ def get_channel_name(data):
         channel_name = None
 
         for line in data:
-            if line and line[0] == 'CHANELL NAME':
+            if line and line[0] == 'Channel id':
                 channel_name = line[1]
 
         return channel_name
@@ -59,7 +59,7 @@ def get_message(data):
     try:
         message_data = None
         for item in data:
-            if len(item) == 2 and item[0] == 'MESSAGE':
+            if len(item) == 2 and item[0] == 'Instruction':
                 message_data = item[1]
                 break
 
