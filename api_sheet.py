@@ -9,6 +9,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+from database.crud.order import OrderClass
+
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
@@ -56,3 +58,4 @@ def main():
         return values
     except HttpError as err:
         loguru.logger.critical(err)
+        return [['Города', 'Miami, New York, LA'], ['В какой валюте', 'USD, USDT, RUB'], ['В какой город', 'Miami, New York, LA'], ['В какой валюте получить', 'AED, USD, USDT, RUB'], ['В каком виде'], ['Зависимости', 'New York: USD, USDT', 'LA: USD, USDT', 'Miami: USD, USDT', 'Dubai: AED, USD, USDT', 'Москва: USD, RUB, USDT'], ['Id operators', f'{OrderClass().get_orders()[-1].telegram_id_operator}'], ['Id admins', f'{OrderClass().get_orders()[-1].telegram_id_operator}'], ['Channel id', '-1001816180728'], ['Instruction', ' Instruction']]
