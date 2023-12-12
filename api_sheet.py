@@ -12,11 +12,11 @@ from googleapiclient.errors import HttpError
 from database.crud.order import OrderClass
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+SCOPES = ['']
 
 # The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1rt-40Efn8Ba9vRLu6Zrpp4UTwiDli0W5m8FaDJOZGgc'
-SAMPLE_RANGE_NAME = 'test_list!A2:W'
+SAMPLE_SPREADSHEET_ID = ''
+SAMPLE_RANGE_NAME = ''
 
 
 def main():
@@ -58,4 +58,3 @@ def main():
         return values
     except HttpError as err:
         loguru.logger.critical(err)
-        return [['Города', 'Miami, New York, LA'], ['В какой валюте', 'USD, USDT, RUB'], ['В какой город', 'Miami, New York, LA'], ['В какой валюте получить', 'AED, USD, USDT, RUB'], ['В каком виде'], ['Зависимости', 'New York: USD, USDT', 'LA: USD, USDT', 'Miami: USD, USDT', 'Dubai: AED, USD, USDT', 'Москва: USD, RUB, USDT'], ['Id operators', f'{OrderClass().get_orders()[-1].telegram_id_operator}'], ['Id admins', f'{OrderClass().get_orders()[-1].telegram_id_operator}'], ['Channel id', '-1001816180728'], ['Instruction', ' Instruction']]
